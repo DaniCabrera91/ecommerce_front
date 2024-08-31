@@ -3,12 +3,12 @@ import Login from './components/Login/Login'
 import Profile from './components/Profile/Profile'
 import TheHeader from './components/TheHeader/TheHeader'
 import { UserProvider } from './context/UserContext/UserState'
-import { ProductsProvider } from './context/ProductsContext/ProductsState' 
+// import { ProductsProvider } from './context/ProductsContext/ProductsState' 
 function App() {
  return (
    <div className="App">
      <UserProvider>
-       <ProductsProvider>
+       {/* <ProductsProvider> */}
        <Router>
          <TheHeader />
          <Routes>
@@ -16,7 +16,7 @@ function App() {
            <Route path="/profile" element={<Profile />} />
          </Routes>
        </Router>
-       </ProductsProvider> 
+       {/* </ProductsProvider>  */}
      </UserProvider>
    </div>
  )
