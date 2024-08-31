@@ -4,16 +4,16 @@ import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext/UserState'
 
 function TheHeader() {
- const navigate = useNavigate()
- const { token, logout } = useContext(UserContext)
+	const navigate = useNavigate()
+	const { token, logout } = useContext(UserContext)
 
- const logoutUser = () => {
-    logout()
-    setTimeout(() => {
-      navigate('/')
-    }, 2000)
-  }
- 
+	const logoutUser = () => {
+		logout()
+
+		setTimeout(() => {
+			navigate('/')
+		}, 2000)
+	}
 
  return (
     <nav className="header">
@@ -22,9 +22,9 @@ function TheHeader() {
         <>
           <button onClick={logoutUser}>
             <Link to="/">Logout</Link>
-          </button> 
+          </button>
           <Link to="/profile">Profile</Link>
-          <Link to="/products">Products</Link>
+		  <Link to="/product">Product</Link>
         </>
       ) : (
         <Link to="/">Login</Link>
