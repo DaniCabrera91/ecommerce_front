@@ -25,7 +25,9 @@ function TheHeader() {
    </button>
    <Link to="/profile">Profile</Link>
    <Link to="/products">Products</Link>
- </>
+   <Link to="/cart">
+     <ShoppingCartOutlined />
+   </Link> </>
 ) : (
  <Link to="/">Login</Link>
 )}
