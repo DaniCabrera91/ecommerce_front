@@ -22,8 +22,9 @@ function TheHeader() {
         <>
           <button onClick={logoutUser}>
             <Link to="/">Logout</Link>
-          </button>
+          </button> 
           <Link to="/profile">Profile</Link>
+          <Link to="/products">Products</Link>
         </>
       ) : (
         <Link to="/">Login</Link>
