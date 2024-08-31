@@ -18,17 +18,17 @@ function TheHeader() {
  return (
     <nav className="header">
       <h1>Header</h1>
-      {token ? (
-        <>
-          <button onClick={logoutUser}>
-            <Link to="/">Logout</Link>
-          </button>
-          <Link to="/profile">Profile</Link>
-		  <Link to="/product">Product</Link>
-        </>
-      ) : (
-        <Link to="/">Login</Link>
-      )}
+	  {token ? (
+ <>
+   <button onClick={logoutUser}>
+     <Link to="/">Logout</Link>
+   </button>
+   <Link to="/profile">Profile</Link>
+   <Link to="/products">Products</Link>
+ </>
+) : (
+ <Link to="/">Login</Link>
+)}
     </nav>
   )
  }

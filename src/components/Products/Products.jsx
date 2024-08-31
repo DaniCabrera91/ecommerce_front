@@ -8,8 +8,8 @@ const Products = () => {
  return (
    <>
      {products && products.map((product) => (
-         <div key={product._id}>
-           <span>{product.name} </span>
+         <div key={product.id}>
+           <span>{product.productName} </span>
            <span>{product.price.toFixed(2)}</span>
          </div>
        ))}
