@@ -14,9 +14,10 @@ function App() {
          <TheHeader />
          <Routes>
            <Route path="/" element={<Login />} />
+          {/* <Route path="/register" element={<Register />} /> */}
            <Route path="/profile" element={<Profile />} />
-           {/* <Route path="/register" element={<Register />} /> */}
            <Route path="/products" element={<Products />} />
+           <Route path="/cart" element={<Cart />} />
          </Routes>
        </Router>
        </ProductsProvider> 
