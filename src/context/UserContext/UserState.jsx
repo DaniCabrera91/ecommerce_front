@@ -10,14 +10,14 @@ try {
   parsedToken = storageToken ? JSON.parse(storageToken) : null;
 } catch (error) {
   console.error('Error parsing token:', error);
-  parsedToken = null; // En caso de error, asegúrate de que parsedToken sea null.
+  parsedToken = null
 }
 
 // Estado inicial
 const initialState = {
   token: parsedToken,
   user: null,
-};
+}
 
 const API_URL = 'http://localhost:3000';
 
@@ -46,32 +46,31 @@ export const UserProvider = ({ children }) => {
 
   // Obtener información del usuario
   const getUserInfo = async () => {
-    try {
-      const token = JSON.parse(localStorage.getItem('token'));
-
-      if (!token) {
-        throw new Error('Token not found');
-      }
-
-      const res = await axios.get(`${API_URL}/users/loggedUser`, {
-        headers: {
-          authorization: token,
-        },
-      });
-
-      if (res.data && res.data.user) {
-        dispatch({
-          type: 'GET_USER_INFO',
-          payload: res.data.user,
-        });
-      } else {
-        console.error('User info not found in the response');
-      }
-      return res;
-    } catch (error) {
-      console.error('Error fetching user info:', error);
-    }
-  };
+	try {
+	  const token = JSON.parse(localStorage.getItem('token'));
+  
+	  if (!token) {
+		throw new Error('Token not found');
+	  }
+  
+	  const res = await axios.get(`${API_URL}/users/loggedUser`, {
+		headers: {
+		  authorization: token,
+		},
+	  });
+  
+	  if (res.data && res.data.user) {
+		dispatch({
+		  type: 'GET_USER_INFO',
+		  payload: res.data.user,
+		});
+	  } else {
+		console.error('User info not found in the response');
+	  }
+	} catch (error) {
+	  console.error('Error fetching user info:', error);
+	}
+  }
 
   // Función de logout
   const logout = async () => {

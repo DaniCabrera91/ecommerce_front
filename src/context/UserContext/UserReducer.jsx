@@ -8,7 +8,7 @@ const users = (state, action) => {
 	  case 'GET_USER_INFO':
 		return {
 		  ...state,
-		  user: action.payload, // Asegúrate de que estás actualizando el estado del usuario correctamente
+		  user: action.payload,
 		};
 	  case 'LOGOUT':
 		return {
