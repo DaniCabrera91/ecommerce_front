@@ -7,7 +7,7 @@ import TheHeader from './components/TheHeader/TheHeader'
 import { UserProvider } from './context/UserContext/UserState'
 import { ProductsProvider } from './context/ProductsContext/ProductsState'
 import { OrdersProvider } from './context/OrdersContext/OrdersState'
-
+import Admin from './components/Admin/Admin'
 function App() {
 	return (
 		<UserProvider>
@@ -20,6 +20,7 @@ function App() {
 							<Route path="/profile" element={<Profile />} />
 							<Route path="/products" element={<Products />} />
 							<Route path="/cart" element={<Cart />} />
+							<Route path="/admin" element={<Admin />} />
 						</Routes>
 					</Router>
 				</OrdersProvider>
