@@ -14,6 +14,19 @@ const API_URL = 'http://localhost:3000'
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProductsReducer, initialState)
 
+  const deleteProduct = async (id) => {
+    const token = JSON.parse(localStorage.getItem('token'))
+    const res = await axios.delete(`${API_URL}/products/id/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    })
+    dispatch({
+      type: 'DELETE_PRODUCT',
+      payload: res.data.response,
+    })
+  }
+
   const getProducts = async () => {
     const res = await axios.get(API_URL + '/products')
 
@@ -45,11 +58,14 @@ export const ProductsProvider = ({ children }) => {
         getProducts,
         addCart,
         clearCart,
+        deleteProduct,
       }}
     >
       {children}
     </ProductsContext.Provider>
   )
+
 }
+
 
 export const ProductsContext = createContext(initialState)

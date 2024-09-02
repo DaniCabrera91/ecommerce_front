@@ -12,7 +12,8 @@ const Admin = () => {
          <div key={product.id}>
            <span>{product.productName} </span>
            <span>{product.price.toFixed(2)}</span>
-           <button onClick={() => console.log('eliminar producto id:', product.id)}>
+        
+           <button onClick={() => deleteProduct(product.id)}>
              <DeleteOutlined />
            </button>
          </div>))
