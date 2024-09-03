@@ -10,10 +10,16 @@ const Cart = () => {
 		localStorage.setItem('cart', JSON.stringify(cart))
 	}, [cart])
 
-	const createNewOrder = () => {
-		createOrder(cart)
-		clearCart()
-	}
+  const createNewOrder = () => {
+    const products = cart.map(item => ({
+        id: item.id,
+        name: item.productName,
+        price: item.price,
+        categoryId: item.CategoryId 
+    }));
+    createOrder(products);
+    clearCart();
+  }
 
 	if (cart.length <= 0) {
 		return <span>No tienes ningún producto añadido</span>
