@@ -3,11 +3,12 @@ import Login from './components/Login/Login'
 import Profile from './components/Profile/Profile'
 import Products from './components/Products/Products'
 import Cart from './components/Cart/Cart'
+import Admin from './components/Admin/Admin'
 import TheHeader from './components/TheHeader/TheHeader'
 import { UserProvider } from './context/UserContext/UserState'
 import { ProductsProvider } from './context/ProductsContext/ProductsState'
 import { OrdersProvider } from './context/OrdersContext/OrdersState'
-import Admin from './components/Admin/Admin'
+
 function App() {
 	return (
 		<UserProvider>

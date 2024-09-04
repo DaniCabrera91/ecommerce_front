@@ -1,71 +1,117 @@
-import { createContext, useReducer } from 'react'
-import axios from 'axios'
-import ProductsReducer from './ProductsReducer'
+import { createContext, useReducer } from 'react';
+import axios from 'axios';
+import ProductsReducer from './ProductsReducer';
 
-const cartStorage = JSON.parse(localStorage.getItem('cart'))
+const cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
 
 const initialState = {
-  products: [],
-  cart: cartStorage ? cartStorage : [],
-}
+    products: [],
+    cart: cartStorage,
+    product: {},
+    categories: [],
+};
 
-const API_URL = 'http://localhost:3000'
+const API_URL = 'http://localhost:3000';
 
 export const ProductsProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(ProductsReducer, initialState)
+    const [state, dispatch] = useReducer(ProductsReducer, initialState);
 
-  const deleteProduct = async (id) => {
-    const token = JSON.parse(localStorage.getItem('token'))
-    const res = await axios.delete(`${API_URL}/products/id/${id}`, {
-      headers: {
-        authorization: token,
-      },
-    })
-    dispatch({
-      type: 'DELETE_PRODUCT',
-      payload: res.data.response,
-    })
-  }
+    const getProducts = async () => {
+        const res = await axios.get(`${API_URL}/products`);
+        dispatch({
+            type: 'GET_PRODUCTS',
+            payload: res.data,
+        });
+    };
 
-  const getProducts = async () => {
-    const res = await axios.get(API_URL + '/products')
+    const addCart = (product) => {
+        dispatch({
+            type: 'ADD_CART',
+            payload: product,
+        });
+    };
 
-    dispatch({
-      type: 'GET_PRODUCTS',
-      payload: res.data,
-    })
-    return res
-  }
+    const clearCart = () => {
+        dispatch({
+            type: 'CLEAR_CART',
+        });
+    };
 
-  const addCart = (product) => {
-    dispatch({
-      type: 'ADD_CART',
-      payload: product,
-    })
-  }
+    const deleteProduct = async (id) => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const res = await axios.delete(`${API_URL}/products/id/${id}`, {
+            headers: {
+                authorization: token,
+            },
+        });
+        dispatch({
+            type: 'DELETE_PRODUCT',
+            payload: res.data.response,
+        });
+    };
 
-  const clearCart = () => {
-    dispatch({
-      type: 'CLEAR_CART',
-    })
-  }
+    const createProduct = async (product) => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const res = await axios.post(`${API_URL}/products`, product, {
+            headers: { authorization: token },
+        });
+        dispatch({
+            type: 'CREATE_PRODUCT',
+            payload: res.data,
+        });
+    };
 
-  return (
-    <ProductsContext.Provider
-      value={{
-        products: state.products,
-        cart: state.cart,
-        getProducts,
-        addCart,
-        clearCart,
-        deleteProduct,
-      }}
-    >
-      {children}
-    </ProductsContext.Provider>
-  )
+    const getProductById = async (id) => {
+        const res = await axios.get(`${API_URL}/products/id/${id}`);
+        dispatch({
+            type: 'GET_PRODUCT_BY_ID',
+            payload: res.data,
+        });
+    };
 
-}
+    const editProduct = async (product, id) => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const res = await axios.put(`${API_URL}/products/id/${id}`, product, {
+            headers: { authorization: token },
+        });
+        dispatch({
+            type: 'EDIT_PRODUCT',
+            payload: res.data,
+        });
+    };
 
+    const getCategories = async () => {
+      try {
+          const res = await axios.get(`${API_URL}/categories`);
+          dispatch({
+              type: 'GET_CATEGORIES',
+              payload: res.data,
+          });
+      } catch (error) {
+          console.error("Error fetching categories", error);
+      }
+  };
 
-export const ProductsContext = createContext(initialState)
+    return (
+        <ProductsContext.Provider
+            value={{
+                products: state.products,
+                cart: state.cart,
+                product: state.product,
+                categories: state.categories,
+                getProducts,
+                addCart,
+                clearCart,
+                deleteProduct,
+                createProduct,
+                getProductById,
+                editProduct,
+                getCategories,
+            }}
+        >
+            {children}
+        </ProductsContext.Provider>
+    );
+};
+
+export const ProductsContext = createContext(initialState);
