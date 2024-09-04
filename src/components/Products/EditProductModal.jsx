@@ -24,8 +24,8 @@ const EditProductModal = ({ visible, setVisible }) => {
     }, [visible, product, updateFormFields]);
 
     const onFinish = (values) => {
-        if (product._id) {
-            editProduct(values, product._id)
+        if (product.id) {
+            editProduct(values, product.id)
                 .then(() => {
                     setVisible(false);
                 })
@@ -68,19 +68,9 @@ const EditProductModal = ({ visible, setVisible }) => {
                     </Form.Item>
                     <span className="ant-form-text"> €</span>
                 </Form.Item>
-           
-            </Form>
-        </Modal>
-    );
-};
 
-export default EditProductModal;
-
-
-
-
-
-     <Form.Item
+                {/* Aquí colocamos el campo de selección de categoría */}
+                <Form.Item
                     label="Category"
                     name="CategoryId"
                     rules={[{ required: true, message: 'Please select a category!' }]}
@@ -99,3 +89,9 @@ export default EditProductModal;
                         )}
                     </Select>
                 </Form.Item>
+            </Form>
+        </Modal>
+    );
+};
+
+export default EditProductModal;
