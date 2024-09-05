@@ -5,6 +5,7 @@ import Products from './components/Products/Products'
 import Cart from './components/Cart/Cart'
 import Admin from './components/Admin/Admin'
 import TheHeader from './components/TheHeader/TheHeader'
+import Footer from './components/Footer/Footer'
 import { UserProvider } from './context/UserContext/UserState'
 import { ProductsProvider } from './context/ProductsContext/ProductsState'
 import { OrdersProvider } from './context/OrdersContext/OrdersState'
@@ -14,7 +15,7 @@ function App() {
 		<UserProvider>
 			<ProductsProvider>
 				<OrdersProvider>
-					<Router>
+					<Router>	
 						<TheHeader />
 						<Routes>
 							<Route path="/" element={<Login />} />
@@ -23,6 +24,7 @@ function App() {
 							<Route path="/cart" element={<Cart />} />
 							<Route path="/admin" element={<Admin />} />
 						</Routes>
+						<Footer />
 					</Router>
 				</OrdersProvider>
 			</ProductsProvider>

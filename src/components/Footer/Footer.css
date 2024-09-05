@@ -1,0 +1,39 @@
+.Footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .home-link, .logout-button, .tos-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .logout-button {
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover, .home-link:hover, .tos-link:hover {
+    color: #ff6347;
+  }
+  
+  .footer-login .login-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .login-link:hover {
+    color: #ff6347;
+  }
+  
