@@ -2,7 +2,6 @@ import { createContext, useReducer } from 'react';
 import axios from 'axios';
 import UserReducer from './UserReducer';
 
-// Verifica y parsea el token del localStorage
 const storageToken = localStorage.getItem('token');
 let parsedToken = null;
 
@@ -13,13 +12,12 @@ try {
   parsedToken = null
 }
 
-// Estado inicial
 const initialState = {
   token: parsedToken,
   user: null,
 }
 
-const API_URL = 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(UserReducer, initialState);
