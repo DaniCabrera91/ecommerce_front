@@ -19,7 +19,7 @@ const ProductsReducer = (state, action) => {
             return {
                 ...state,
                 products: state.products.filter(
-                    (product) => product._id !== action.payload._id
+                    (product) => product.id !== action.payload
                 ),
             };
         case 'CREATE_PRODUCT':
@@ -36,21 +36,19 @@ const ProductsReducer = (state, action) => {
             return {
                 ...state,
                 products: state.products.map((product) =>
-                    product._id === action.payload._id
+                    product.id === action.payload.id
                         ? { ...product, ...action.payload }
                         : product
                 ),
             };
-		case 'GET_CATEGORIES':
-			return {
-				...state,
-				categories: action.payload,
-			};
-	
-			
+        case 'GET_CATEGORIES':
+            return {
+                ...state,
+                categories: action.payload,
+            };
         default:
             return state;
     }
 };
 
-export default ProductsReducer;
+export default ProductsReducer

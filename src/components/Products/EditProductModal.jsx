@@ -1,39 +1,39 @@
-import { Button, Modal, Form, InputNumber, Input, Select } from 'antd';
-import { useContext, useEffect, useCallback } from 'react';
-import { ProductsContext } from '../../context/ProductsContext/ProductsState';
+import { Button, Modal, Form, InputNumber, Input, Select } from 'antd'
+import { useContext, useEffect, useCallback } from 'react'
+import { ProductsContext } from '../../context/ProductsContext/ProductsState'
 
-const EditProductModal = ({ visible, setVisible }) => {
-    const { product, editProduct, categories } = useContext(ProductsContext);
+const EditProductModal = ({ visible, setVisible, onEdit }) => {
+    const { product, categories, editProduct } = useContext(ProductsContext)
     const [form] = Form.useForm();
 
     const updateFormFields = useCallback(() => {
         if (product) {
-            console.log('Updating form fields with product data:', product);
             form.setFieldsValue({
                 productName: product.productName || '',
                 price: product.price || 0,
                 CategoryId: product.CategoryId || undefined,
             });
         }
-    }, [product, form]);
+    }, [product, form])
 
     useEffect(() => {
         if (visible && product) {
-            updateFormFields();
+            updateFormFields()
         }
-    }, [visible, product, updateFormFields]);
+    }, [visible, product, updateFormFields])
 
     const onFinish = (values) => {
         if (product.id) {
             editProduct(values, product.id)
                 .then(() => {
-                    setVisible(false);
+                    setVisible(false)
+                    onEdit(values)
                 })
                 .catch((error) => {
-                    console.error('Error updating product:', error);
-                });
+                    console.error('Error updating product:', error)
+                })
         }
-    };
+    }
 
     return (
         <Modal
@@ -68,8 +68,6 @@ const EditProductModal = ({ visible, setVisible }) => {
                     </Form.Item>
                     <span className="ant-form-text"> €</span>
                 </Form.Item>
-
-                {/* Aquí colocamos el campo de selección de categoría */}
                 <Form.Item
                     label="Category"
                     name="CategoryId"
@@ -94,4 +92,4 @@ const EditProductModal = ({ visible, setVisible }) => {
     );
 };
 
-export default EditProductModal;
+export default EditProductModal

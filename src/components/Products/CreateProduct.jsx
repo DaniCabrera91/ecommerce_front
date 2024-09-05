@@ -1,23 +1,21 @@
-import { Button, Form, InputNumber, Input, Select } from 'antd';
-import { useContext, useEffect, useRef } from 'react';
-import { ProductsContext } from '../../context/ProductsContext/ProductsState';
+import { Button, Form, InputNumber, Input, Select } from 'antd'
+import { useContext, useEffect, useRef } from 'react'
+import { ProductsContext } from '../../context/ProductsContext/ProductsState'
 
 const CreateProduct = () => {
-    const { createProduct, categories, getCategories } = useContext(ProductsContext);
-    const hasFetchedCategories = useRef(false);
+    const { createProduct, categories, getCategories } = useContext(ProductsContext)
+    const hasFetchedCategories = useRef(false)
 
     useEffect(() => {
         if (!hasFetchedCategories.current) {
             getCategories();
-            hasFetchedCategories.current = true;
+            hasFetchedCategories.current = true
         }
     }, [getCategories]);
 
     const onFinish = (values) => {
-        createProduct(values);
-    };
-
-    // console.log('Categories in CreateProduct:', categories);
+        createProduct(values)
+    }
 
     return (
         <Form onFinish={onFinish}>
@@ -32,24 +30,21 @@ const CreateProduct = () => {
             </Form.Item>
             <Form.Item label="Category" name="CategoryId" rules={[{ required: true, message: 'Please select a category!' }]}>
                 <Select placeholder="Select a category">
-                    {categories.length > 0 ? (
-                        categories.map(category => (
-                            <Select.Option key={category.id} value={category.id}>
-                                {category.categoryName}
-                            </Select.Option>
-                        ))
-                    ) : (
-                        <Select.Option disabled>Loading categories...</Select.Option>
-                    )}
+                    {categories.map(category => (
+                        <Select.Option key={category.id} value={category.id}>
+                            {category.categoryName}
+                        </Select.Option>
+                    ))}
                 </Select>
             </Form.Item>
+
             <Form.Item>
                 <Button type="primary" htmlType="submit">
                     Submit
                 </Button>
             </Form.Item>
         </Form>
-    );
-};
+    )
+}
 
-export default CreateProduct;
+export default CreateProduct
