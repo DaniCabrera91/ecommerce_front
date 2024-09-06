@@ -2,7 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext/UserState'
-import { ShoppingCartOutlined, HomeOutlined, ProfileOutlined, LogoutOutlined, ProductOutlined } from '@ant-design/icons'
+import { ShoppingCartOutlined, HomeOutlined, ProfileOutlined, LogoutOutlined, ProductOutlined, UserAddOutlined, LoginOutlined } from '@ant-design/icons'
 
 function TheHeader() {
 	const navigate = useNavigate()
@@ -23,6 +23,7 @@ function TheHeader() {
 					<Link to="/"> <HomeOutlined /> Home 
 						
 					</Link>
+					
 					<Link to="/profile"> <ProfileOutlined /> Profile
 						
 					</Link>
@@ -39,7 +40,16 @@ function TheHeader() {
 					</button> */}
 				</>
 			) : (
-				<Link to="/">Login</Link>
+
+				<>
+
+				<Link to="/"><HomeOutlined />Home </Link>
+
+				<Link to="/login"> <LoginOutlined /> Login</Link>
+			
+				<Link to="/register"> <UserAddOutlined /> Register</Link>
+
+				</>
 			)}
 		</nav>
 	)
