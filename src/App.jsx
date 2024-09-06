@@ -10,6 +10,7 @@ import { UserProvider } from './context/UserContext/UserState';
 import { ProductsProvider } from './context/ProductsContext/ProductsState';
 import { OrdersProvider } from './context/OrdersContext/OrdersState';
 import Register from './components/RegisterUser/RegisterUser';
+import './reset.css';
 
 function App() {
   return (
