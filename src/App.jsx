@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomeView from './views/HomeView';
 import Login from './components/Login/Login';
 import Profile from './components/Profile/Profile';
 import Products from './components/Products/Products';
@@ -13,20 +14,21 @@ import Register from './components/RegisterUser/RegisterUser';
 
 function App() {
   return (
-    <UserProvider>
+    <UserProvider>	
       <ProductsProvider>
-        <OrdersProvider>
+        <OrdersProvider>	
           <Router>	
             <TheHeader />
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route path="/" element={<HomeView />} />
+			  <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/products" element={<Products />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/register" element={<Register />} />
             </Routes>
-						<Footer />
+			<Footer />
           </Router>
         </OrdersProvider>
       </ProductsProvider>
