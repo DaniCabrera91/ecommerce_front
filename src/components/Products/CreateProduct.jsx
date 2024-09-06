@@ -4,14 +4,12 @@ import { ProductsContext } from '../../context/ProductsContext/ProductsState'
 
 const CreateProduct = () => {
     const { createProduct, categories, getCategories } = useContext(ProductsContext)
-    const hasFetchedCategories = useRef(false)
 
     useEffect(() => {
-        if (!hasFetchedCategories.current) {
+        if (categories.length === 0) {
             getCategories();
-            hasFetchedCategories.current = true
         }
-    }, [getCategories]);
+    }, [getCategories, categories])
 
     const onFinish = (values) => {
         createProduct(values)

@@ -22,7 +22,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
-  // Función de login
+  // LOGIN
   const login = async (user) => {
 	try {
 	  const res = await axios.post(`${API_URL}/users/login`, user);
@@ -42,7 +42,7 @@ export const UserProvider = ({ children }) => {
 	}
   };
 
-  // Obtener información del usuario
+  // GET USER INFO
   const getUserInfo = async () => {
 	try {
 	  const token = JSON.parse(localStorage.getItem('token'));
@@ -70,7 +70,7 @@ export const UserProvider = ({ children }) => {
 	}
   }
 
-  // Función de logout
+  // LOGOUT
   const logout = async () => {
     try {
       const token = JSON.parse(localStorage.getItem('token'));
