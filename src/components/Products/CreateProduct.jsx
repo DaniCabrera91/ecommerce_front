@@ -4,7 +4,6 @@ import { ProductsContext } from '../../context/ProductsContext/ProductsState'
 
 const CreateProduct = () => {
     const { createProduct, categories, getCategories } = useContext(ProductsContext)
-    const hasFetchedCategories = useRef(false)
 
     useEffect(() => {
         if (categories.length === 0) {
