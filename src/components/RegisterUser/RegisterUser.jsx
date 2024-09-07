@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, message } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from 'react'
+import { Form, Input, Button, message } from 'antd'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL
 
 const Register = () => {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const onFinish = async (values) => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const response = await axios.post(`${API_URL}/users`, values);
-      message.success('Usuario registrado con éxito');
-      navigate('/');
+      const response = await axios.post(`${API_URL}/users`, values)
+      message.success('Usuario registrado con éxito')
+      navigate('/')
     } catch (error) {
-      message.error('Error al registrar el usuario');
-      console.error('Error de registro:', error);
+      message.error('Error al registrar el usuario')
+      console.error('Error de registro:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   };
 
@@ -126,4 +126,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register

@@ -17,8 +17,8 @@ const Cart = () => {
         price: item.price,
         categoryId: item.CategoryId 
     }));
-    createOrder(products);
-    clearCart();
+    createOrder(products)
+    clearCart()
   }
 
 	if (cart.length <= 0) {
@@ -43,6 +43,3 @@ const Cart = () => {
  }
  
  export default Cart
-
-
- 

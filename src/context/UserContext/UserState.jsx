@@ -73,28 +73,22 @@ export const UserProvider = ({ children }) => {
   // LOGOUT
   const logout = async () => {
     try {
-      const token = JSON.parse(localStorage.getItem('token'));
+        const token = JSON.parse(localStorage.getItem('token'));
 
-      if (!token) {
-        throw new Error('Token not found');
-      }
+        if (!token) {
+            throw new Error('Token not found');
+        }
 
-      const res = await axios.delete(`${API_URL}/users/logout`, {
-        headers: {
-          authorization: token,
-        },
-      });
-
-      if (res.data) {
-        localStorage.removeItem('token');
-        dispatch({
-          type: 'LOGOUT',
+        await axios.delete(`${API_URL}/users/logout`, {
+            headers: { Authorization: token } // Asegúrate de que esto sea correcto
         });
-      }
+
+        localStorage.removeItem('token');
+        dispatch({ type: 'LOGOUT' });
     } catch (error) {
-      console.error('Error during logout:', error);
+        console.error('Error during logout:', error);
     }
-  };
+};
 
   return (
     <UserContext.Provider
