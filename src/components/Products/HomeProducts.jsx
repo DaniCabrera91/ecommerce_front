@@ -26,7 +26,7 @@ const HomeProducts = () => {
     <div className="home-products-container">
       {products && products.map((product) => (
         <div key={product.id} className="home-product-card">
-          <img src={product.image || 'default-image.png'} alt={product.productName} className="home-product-image" />
+          <img src={product.image || "/src/components/Products/default-image.jpg"} alt={product.productName} className="home-product-image" />
           <h3 className="home-product-name">{product.productName}</h3>
           <p className="home-product-price">{product.price !== undefined ? `$${product.price.toFixed(2)}` : 'N/A'}</p>
           <button onClick={() => addCart(product)} className="home-add-to-cart-button">Add to Cart</button>

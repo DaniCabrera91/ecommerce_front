@@ -10,7 +10,7 @@ import Forbidden from './components/Forbidden/Forbidden'; // Página para acceso
 import { UserProvider } from './context/UserContext/UserState';
 import { ProductsProvider } from './context/ProductsContext/ProductsState';
 import { OrdersProvider } from './context/OrdersContext/OrdersState';
-import './reset.css';
+import './reset.scss';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import TheHeader from './components/TheHeader/TheHeader';
 import Footer from './components/Footer/Footer';
