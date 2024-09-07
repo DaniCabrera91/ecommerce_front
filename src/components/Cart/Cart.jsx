@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { ProductsContext } from '../../context/ProductsContext/ProductsState'
 import { OrdersContext } from '../../context/OrdersContext/OrdersState'
+import './Cart.scss';
 
 const Cart = () => {
 	const { cart, clearCart } = useContext(ProductsContext)

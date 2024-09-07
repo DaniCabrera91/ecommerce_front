@@ -1,13 +1,14 @@
-import React from 'react'
-import Products from '../components/Products/Products'
+import './HomeView.scss';
+import React from 'react';
+import HomeProducts from '../components/Products/HomeProducts';
 
 function HomeView() {
   return (
     <div className="homeview">
       <h2 className="homeview__subtitle">Special Offers</h2>
-      <Products />
+      <HomeProducts />
     </div>
-  )
+  );
 }
 
-export default HomeView
+export default HomeView;

@@ -1,4 +1,4 @@
-import './Footer.css';
+import './Footer.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { HomeOutlined } from '@ant-design/icons';

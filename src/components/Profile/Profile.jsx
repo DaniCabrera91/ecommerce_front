@@ -1,3 +1,4 @@
+import './Profile.scss';
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext/UserState'
 import { OrdersContext } from '../../context/OrdersContext/OrdersState'

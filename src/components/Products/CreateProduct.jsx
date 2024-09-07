@@ -1,3 +1,4 @@
+import './CreateProduct.scss';
 import { Button, Form, InputNumber, Input, Select } from 'antd'
 import { useContext, useEffect, useRef } from 'react'
 import { ProductsContext } from '../../context/ProductsContext/ProductsState'
