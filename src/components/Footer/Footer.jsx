@@ -1,8 +1,8 @@
-import './Footer.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { HomeOutlined } from '@ant-design/icons';
-import { UserContext } from '../../context/UserContext/UserState'; // Asegúrate de que este path es correcto
+import './Footer.css'
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { HomeOutlined } from '@ant-design/icons'
+import { UserContext } from '../../context/UserContext/UserState'
 
 function Footer() {
   const navigate = useNavigate();
@@ -11,9 +11,9 @@ function Footer() {
   const logoutUser = () => {
     logout();
     setTimeout(() => {
-      navigate('/');
-    }, 2000);
-  };
+      navigate('/')
+    }, 2000)
+  }
 
   return (
     <footer className="Footer">
@@ -23,9 +23,8 @@ function Footer() {
             <Link to="/" className="home-link">
               <HomeOutlined /> Ir al cielo
             </Link>
-            <button onClick={logoutUser} className="logout-button">
-              Logout
-            </button>
+            <Link to="/" onClick={logoutUser}> Logout
+					</Link>
           </div>
           <p>&copy; 2024 My Website. All rights reserved.</p>
           <Link to="/terms-of-service" className="tos-link">
@@ -34,11 +33,11 @@ function Footer() {
         </>
       ) : (
         <div className="footer-login">
-          <Link to="/login" className="login-link">Login</Link>
+				<Link to="/login"> Login</Link>
         </div>
       )}
     </footer>
   );
 }
 
-export default Footer;
+export default Footer
