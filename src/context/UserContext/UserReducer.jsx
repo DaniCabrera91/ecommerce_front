@@ -21,4 +21,4 @@ const users = (state, action) => {
 	}
   };
   
-  export default users;
+  export default users

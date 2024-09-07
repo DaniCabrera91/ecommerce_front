@@ -1,17 +1,17 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomeView from './views/HomeView';
-import Login from './components/Login/Login';
-import Profile from './components/Profile/Profile';
-import Products from './components/Products/Products';
-import Cart from './components/Cart/Cart';
-import Admin from './components/Admin/Admin';
-import TheHeader from './components/TheHeader/TheHeader';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import HomeView from './views/HomeView'
+import Login from './components/Login/Login'
+import Profile from './components/Profile/Profile'
+import Products from './components/Products/Products'
+import Cart from './components/Cart/Cart'
+import Admin from './components/Admin/Admin'
+import TheHeader from './components/TheHeader/TheHeader'
 import Footer from './components/Footer/Footer'
-import { UserProvider } from './context/UserContext/UserState';
-import { ProductsProvider } from './context/ProductsContext/ProductsState';
-import { OrdersProvider } from './context/OrdersContext/OrdersState';
-import Register from './components/RegisterUser/RegisterUser';
-import './reset.css';
+import { UserProvider } from './context/UserContext/UserState'
+import { ProductsProvider } from './context/ProductsContext/ProductsState'
+import { OrdersProvider } from './context/OrdersContext/OrdersState'
+import Register from './components/RegisterUser/RegisterUser'
+import './reset.css'
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         </OrdersProvider>
       </ProductsProvider>
     </UserProvider>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -35,9 +35,6 @@ function TheHeader() {
 					</Link>
 					<Link to="/" onClick={logoutUser}> <LogoutOutlined /> Logout
 					</Link>
-					{/* <button onClick={logoutUser}>
-						<Link to="/"> <LogoutOutlined /> Logout</Link>
-					</button> */}
 				</>
 			) : (
 

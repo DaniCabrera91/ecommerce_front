@@ -1,5 +1,5 @@
-import React from 'react';
-import Products from '../components/Products/Products';
+import React from 'react'
+import Products from '../components/Products/Products'
 
 function HomeView() {
   return (
@@ -7,7 +7,7 @@ function HomeView() {
       <h2 className="homeview__subtitle">Special Offers</h2>
       <Products />
     </div>
-  );
+  )
 }
 
-export default HomeView;
+export default HomeView
