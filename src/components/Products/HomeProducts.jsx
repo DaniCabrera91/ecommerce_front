@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ProductsContext } from '../../context/ProductsContext/ProductsState';
-import './HomeProducts.scss'; // Asegúrate de agregar estilos en este archivo
+import { ProductsGrid, ProductCardContainer, ProductImage, ProductName, ProductPrice, AddToCartButton } from './HomeProducts.styled';
 
 const HomeProducts = () => {
   const { getProducts, products, addCart } = useContext(ProductsContext);
@@ -23,16 +23,16 @@ const HomeProducts = () => {
   if (loading) return <div>Loading products...</div>;
 
   return (
-    <div className="home-products-container">
-      {products && products.map((product) => (
-        <div key={product.id} className="home-product-card">
-          <img src={product.image || "/src/components/Products/default-image.jpg"} alt={product.productName} className="home-product-image" />
-          <h3 className="home-product-name">{product.productName}</h3>
-          <p className="home-product-price">{product.price !== undefined ? `$${product.price.toFixed(2)}` : 'N/A'}</p>
-          <button onClick={() => addCart(product)} className="home-add-to-cart-button">Add to Cart</button>
-        </div>
+    <ProductsGrid>
+      {products.map(product => (
+        <ProductCardContainer key={product.id}>
+          <ProductImage src={product.image || "/src/components/Products/default-image.jpg"} alt={product.productName} />
+          <ProductName>{product.productName}</ProductName>
+          <ProductPrice>{`$${product.price.toFixed(2)}`}</ProductPrice>
+          <AddToCartButton onClick={() => addCart(product)}>Add to Cart</AddToCartButton>
+        </ProductCardContainer>
       ))}
-    </div>
+    </ProductsGrid>
   );
 };
 

@@ -1,12 +1,31 @@
+<<<<<<< HEAD
 import './TheHeader.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext/UserState'
 import { ShoppingCartOutlined, HomeOutlined, ProfileOutlined, LogoutOutlined, ProductOutlined, UserAddOutlined, LoginOutlined, DashboardOutlined } from '@ant-design/icons'
+=======
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext/UserState';
+import {
+  ShoppingCartOutlined,
+  HomeOutlined,
+  ProfileOutlined,
+  LogoutOutlined,
+  UserAddOutlined,
+  LoginOutlined,
+  DashboardOutlined,
+  MenuOutlined
+} from '@ant-design/icons';
+import { HeaderContainer, NavLink, HeaderTitle, MenuButton, DrawerContainer, NavLinks } from './TheHeader.styled';
+import { Drawer } from 'antd';
+>>>>>>> d449969ae5c1d75af31b4d50af123be8a46fad16
 
 function TheHeader() {
   const navigate = useNavigate();
   const { token, logout, user } = useContext(UserContext);
+  const [drawerVisible, setDrawerVisible] = useState(false);
 
   const logoutUser = () => {
     logout();
@@ -15,27 +34,63 @@ function TheHeader() {
     }, 2000);
   };
 
+  const showDrawer = () => {
+    setDrawerVisible(true);
+  };
+
+  const onClose = () => {
+    setDrawerVisible(false);
+  };
+
   return (
-    <nav className="header">
-      <h1>Header</h1>
-      <Link to="/"> <HomeOutlined /> Home </Link>
-      {token ? (
-        <>
-          <Link to="/profile"> <ProfileOutlined /> Profile </Link>
-          <Link to="/products"> <ProductOutlined /> Products </Link>
-          <Link to="/cart"> <ShoppingCartOutlined /> Cart </Link>
-          <Link to="/" onClick={logoutUser}> <LogoutOutlined /> Logout </Link>
-		  {user?.role === 'admin' && (
-            <Link to="/admin"> <DashboardOutlined /> Admin </Link>
+    <HeaderContainer>
+      <HeaderTitle>DenDA</HeaderTitle>
+      <NavLinks>
+        <NavLink to="/"> <HomeOutlined /> Home </NavLink>
+        {token ? (
+          <>
+            <NavLink to="/profile"> <ProfileOutlined /> Profile </NavLink>
+            <NavLink to="/cart"> <ShoppingCartOutlined /> Cart </NavLink>
+            <NavLink to="/" onClick={logoutUser}> <LogoutOutlined /> Logout </NavLink>
+            {user?.role === 'admin' && (
+              <NavLink to="/admin"> <DashboardOutlined /> Admin </NavLink>
+            )}
+          </>
+        ) : (
+          <>
+            <NavLink to="/login"> <LoginOutlined /> Login </NavLink>
+            <NavLink to="/register"> <UserAddOutlined /> Register </NavLink>
+          </>
+        )}
+      </NavLinks>
+      <MenuButton icon={<MenuOutlined />} onClick={showDrawer} />
+      <Drawer
+        title="Menu"
+        placement="right"
+        onClose={onClose}
+        open={drawerVisible}
+        width={250}
+      >
+        <DrawerContainer>
+          <NavLink to="/" onClick={onClose}> <HomeOutlined /> Home </NavLink>
+          {token ? (
+            <>
+              <NavLink to="/profile" onClick={onClose}> <ProfileOutlined /> Profile </NavLink>
+              <NavLink to="/cart" onClick={onClose}> <ShoppingCartOutlined /> Cart </NavLink>
+              <NavLink to="/" onClick={() => { logoutUser(); onClose(); }}> <LogoutOutlined /> Logout </NavLink>
+              {user?.role === 'admin' && (
+                <NavLink to="/admin" onClick={onClose}> <DashboardOutlined /> Admin </NavLink>
+              )}
+            </>
+          ) : (
+            <>
+              <NavLink to="/login" onClick={onClose}> <LoginOutlined /> Login </NavLink>
+              <NavLink to="/register" onClick={onClose}> <UserAddOutlined /> Register </NavLink>
+            </>
           )}
-        </>
-      ) : (
-        <>
-          <Link to="/login"> <LoginOutlined /> Login </Link>
-          <Link to="/register"> <UserAddOutlined /> Register </Link>
-        </>
-      )}
-    </nav>
+        </DrawerContainer>
+      </Drawer>
+    </HeaderContainer>
   );
 }
 
