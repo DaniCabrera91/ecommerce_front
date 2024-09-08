@@ -2,7 +2,7 @@ import './TheHeader.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext/UserState'
-import { ShoppingCartOutlined, HomeOutlined, ProfileOutlined, LogoutOutlined, ProductOutlined, UserAddOutlined, LoginOutlined } from '@ant-design/icons'
+import { ShoppingCartOutlined, HomeOutlined, ProfileOutlined, LogoutOutlined, ProductOutlined, UserAddOutlined, LoginOutlined, DashboardOutlined } from '@ant-design/icons'
 
 function TheHeader() {
   const navigate = useNavigate();

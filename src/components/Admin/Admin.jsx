@@ -3,6 +3,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { ProductsContext } from '../../context/ProductsContext/ProductsState'
 import CreateProduct from '../Products/CreateProduct'
 import EditProductModal from '../Products/EditProductModal'
+import ImgProduct from '../Products/ImgProducts'
 import './Admin.scss';
 const Admin = () => {
     const { getProducts, products, deleteProduct, getProductById, editProduct } = useContext(ProductsContext)
@@ -60,5 +61,6 @@ const Admin = () => {
         </>
     )
 }
+
 
 export default Admin
