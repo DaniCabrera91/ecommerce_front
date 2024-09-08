@@ -1,34 +1,34 @@
-import './Profile.scss';
-import { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../../context/UserContext/UserState'
-import { OrdersContext } from '../../context/OrdersContext/OrdersState'
-import { Tabs, List, Card } from 'antd'
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../context/UserContext/UserState';
+import { OrdersContext } from '../../context/OrdersContext/OrdersState';
+import { Tabs, List, Card } from 'antd';
+import { ProfileContainer, UserInfo, OrderCard } from './Profile.styled';
 
 const Profile = () => {
-  const { getUserInfo, user } = useContext(UserContext)
-  const { getOrders, orders = [] } = useContext(OrdersContext)
-  const [loadingOrders, setLoadingOrders] = useState(true)
-  const [ordersFetched, setOrdersFetched] = useState(false)
+  const { getUserInfo, user } = useContext(UserContext);
+  const { getOrders, orders = [] } = useContext(OrdersContext);
+  const [loadingOrders, setLoadingOrders] = useState(true);
+  const [ordersFetched, setOrdersFetched] = useState(false);
 
   useEffect(() => {
     if (!user) {
-      getUserInfo()
+      getUserInfo();
     }
-  }, [getUserInfo, user])
+  }, [getUserInfo, user]);
 
   useEffect(() => {
     if (user && !ordersFetched) {
-      getOrders().finally(() => setLoadingOrders(false))
-      setOrdersFetched(true)
+      getOrders().finally(() => setLoadingOrders(false));
+      setOrdersFetched(true);
     }
-  }, [user, getOrders, ordersFetched])
+  }, [user, getOrders, ordersFetched]);
 
   if (!user) {
-    return <p>Loading user data...</p>
+    return <p>Loading user data...</p>;
   }
 
   if (loadingOrders) {
-    return <p>Loading orders...</p>
+    return <p>Loading orders...</p>;
   }
 
   const tabItems = [
@@ -36,13 +36,13 @@ const Profile = () => {
       key: '1',
       label: 'Mi Perfil',
       children: (
-        <div>
+        <UserInfo>
           <p>Nombre: {user.firstName}</p>
           <p>Apellidos: {user.lastName}</p>
           <p>Email: {user.email}</p>
           <p>Dirección: {user.address}</p>
           <p>Teléfono: {user.phone}</p>
-        </div>
+        </UserInfo>
       ),
     },
     {
@@ -55,11 +55,12 @@ const Profile = () => {
             dataSource={orders}
             renderItem={(order) => (
               <List.Item>
-                <Card title={`Pedido ID: ${order.id}`}>
+                <OrderCard>
+                  <h3>Pedido ID: {order.id}</h3>
                   <p>Order Date: {order.orderDate}</p>
                   <p>Delivery Date: {order.deliveryDate}</p>
                   <p>Order: {order.productNames.join(', ')}</p>
-                </Card>
+                </OrderCard>
               </List.Item>
             )}
           />
@@ -71,11 +72,11 @@ const Profile = () => {
   ];
 
   return (
-    <div>
+    <ProfileContainer>
       <h1>Bienvenid@ {user.firstName}</h1>
       <Tabs items={tabItems} defaultActiveKey="1" />
-    </div>
-  )
-}
+    </ProfileContainer>
+  );
+};
 
-export default Profile
+export default Profile;

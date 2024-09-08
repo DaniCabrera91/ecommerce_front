@@ -1,65 +1,43 @@
-import './Login.scss'
-import { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../../context/UserContext/UserState'
-import { Form, Input, Button } from 'antd'
+import { useState, useContext } from 'react';
+import { UserContext } from '../../context/UserContext/UserState';
+import { LoginForm, InputField, SubmitButton } from './Login.styled';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-	const { login } = useContext(UserContext)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useContext(UserContext);
+  const navigate = useNavigate();
 
-	const navigate = useNavigate()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Call the login function with an object containing email and password
+      await login({ email, password });
+      // Navigate to profile after successful login
+      navigate('/profile');
+    } catch (error) {
+      console.error('Error during login:', error.response?.data || error.message);
+    }
+  };
 
-	useEffect(() => {
-		setTimeout(() => {
-			const foundToken = JSON.parse(localStorage.getItem('token'))
+  return (
+    <LoginForm onSubmit={handleSubmit}>
+      <InputField
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <InputField
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <SubmitButton type="submit">Login</SubmitButton>
+    </LoginForm>
+  );
+};
 
-			if (foundToken) {
-				navigate('/profile')
-			}
-		}, 2000)
-	}, [login])
-
-	const onFinish = (values) => {
-		login(values)
-	}
-
-	const onFinishFailed = (errorInfo) => {
-		console.error('Failed please complete all the fields', errorInfo)
-	}
-
-	return (
-		<div className="container">
-			<Form
-				name="basic"
-				labelCol={{ span: 8 }}
-				wrapperCol={{ span: 16 }}
-				initialValues={{ remember: true }}
-				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
-				autoComplete="off"
-			>
-				<Form.Item
-					label="Email"
-					name="email"
-					rules={[{ required: true, message: 'Please input your email!' }]}
-				>
-					<Input />
-				</Form.Item>
-				<Form.Item
-					label="Password"
-					name="password"
-					rules={[{ required: true, message: 'Please input your password!' }]}
-				>
-					<Input.Password />
-				</Form.Item>
-				<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-					<Button type="primary" htmlType="submit">
-						Submit
-					</Button>
-				</Form.Item>
-			</Form>
-		</div>
-	)
-}
-
-export default Login
+export default Login;
