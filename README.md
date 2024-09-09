@@ -273,8 +273,6 @@ Inicialo Tambíen
 npm run dev  / npm start {cuando este acabado}
 ```
 # Extras Realizados
-
-## Admin CRUD
 - Permite la creación, modificación y eliminacion de productos (CRUD)
 - El usuario con rol Admin tenga una opción en el nav que le lleva a la vista Admin
 - Vista Admin donde se puede hacer el CRUD de productos (solamente si tienes el role Admin)
