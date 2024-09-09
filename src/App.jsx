@@ -18,7 +18,6 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './theme/globalStyles';
 import { lightTheme, darkTheme } from './theme/theme';
 
-
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -33,7 +32,7 @@ function App() {
         <ProductsProvider>
           <OrdersProvider>
             <Router>
-              <TheHeader onThemeToggle={toggleTheme} isDarkMode={isDarkMode} />
+              <TheHeader toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
               <Routes>
                 <Route path="/" element={<HomeView />} />
                 <Route path="/login" element={<Login />} />

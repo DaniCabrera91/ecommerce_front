@@ -26,11 +26,13 @@ export const darkTheme = {
     primary: '#CA4B24',
     secondary: '#404040',
     buttonText: '#ffffff',
-    text: '#ffffff',
+    text: '#ffffff', // Texto blanco para buena visibilidad
+    textLight: '#cccccc', // Placeholder claro
     headerFooterBackground: '#333333',
     highlight: '#ff6347',
     border: '#444444',
     cardBackground: '#666666',
+    inputBackground: '#333333', // Fondo oscuro para los inputs
   },
   spacing: {
     large: '2rem',
@@ -39,3 +41,4 @@ export const darkTheme = {
     large: '2rem',
   },
 };
+

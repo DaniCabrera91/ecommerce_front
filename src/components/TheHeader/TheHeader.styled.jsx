@@ -17,6 +17,8 @@ export const HeaderContainer = styled.header`
 export const HeaderTitle = styled.h1`
   font-size: 2rem;
   margin: 0;
+    color: ${({ theme }) => theme.colors.primary};
+
 `;
 
 export const RightContainer = styled.div`
@@ -28,12 +30,14 @@ export const RightContainer = styled.div`
 export const NavLinks = styled.div`
   display: flex;
   align-items: center;
+  margin-left: auto;  // Este es el ajuste clave
   margin-right: 20px;
 
   @media (max-width: 768px) {
     display: none;
   }
 `;
+
 
 export const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.text};
@@ -48,7 +52,7 @@ export const NavLink = styled(Link)`
   }
 
   &.active {
-    font-weight: bold; /* O cualquier otro estilo que quieras para el enlace activo */
+    font-weight: bold;
     color: ${({ theme }) => theme.colors.highlight};
   }
 
@@ -65,7 +69,7 @@ export const MenuButton = styled(Button)`
   }
 `;
 
-export const StyledDrawer = styled(AntDrawer)`
+export const Drawer = styled(AntDrawer)`
   .ant-drawer-header {
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
@@ -108,7 +112,7 @@ export const DrawerContainer = styled.div`
     }
 
     &.active {
-      font-weight: bold; /* O cualquier otro estilo que quieras para el enlace activo */
+      font-weight: bold;
       color: ${({ theme }) => theme.colors.highlight};
     }
 

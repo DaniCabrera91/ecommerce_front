@@ -16,11 +16,21 @@ export const InputField = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 4px;
   font-size: 1rem;
-  background-color: ${({ theme }) => theme.colors.inputBackground};
-  color: ${({ theme }) => theme.colors.text};
+  background-color: ${({ theme }) => theme.colors.inputBackground}; // Fondo según el tema
+  color: ${({ theme }) => theme.colors.text}; // Texto según el tema
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.textLight};
+    color: ${({ theme }) => theme.colors.textLight || theme.colors.text}; // Placeholder más claro
+  }
+
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.inputBackground}; // Mantener fondo oscuro en modo oscuro
+    border-color: ${({ theme }) => theme.colors.highlight}; // Borde visible al enfocar
+    color: ${({ theme }) => theme.colors.text}; // Texto visible
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.highlight}; // Cambiar borde al hacer hover
   }
 `;
 

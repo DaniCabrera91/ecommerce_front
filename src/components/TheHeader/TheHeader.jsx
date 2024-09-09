@@ -1,10 +1,6 @@
-import './TheHeader.scss'
-import { Link, useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
-import { UserContext } from '../../context/UserContext/UserState'
-import { ShoppingCartOutlined, HomeOutlined, ProfileOutlined, LogoutOutlined, ProductOutlined, UserAddOutlined, LoginOutlined, DashboardOutlined } from '@ant-design/icons'
-import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom'; 
+import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext/UserState';
 import {
   ShoppingCartOutlined,
@@ -16,11 +12,12 @@ import {
   DashboardOutlined,
   MenuOutlined
 } from '@ant-design/icons';
-import { HeaderContainer, NavLink, HeaderTitle, MenuButton, DrawerContainer, NavLinks, Drawer } from './TheHeader.styled';
+import { HeaderContainer, NavLink, HeaderTitle, MenuButton, DrawerContainer, NavLinks, Drawer } from './TheHeader.styled'; 
+import ThemeToggle from '../../theme/ThemeToggle'; // Importamos el componente ThemeToggle
 
-
-function TheHeader() {
+function TheHeader({ toggleTheme, isDarkMode }) {
   const navigate = useNavigate();
+  const location = useLocation(); 
   const { token, logout, user } = useContext(UserContext);
   const [drawerVisible, setDrawerVisible] = useState(false);
 
@@ -43,23 +40,41 @@ function TheHeader() {
     <HeaderContainer>
       <HeaderTitle>DenDA</HeaderTitle>
       <NavLinks>
-        <NavLink to="/"> <HomeOutlined /> Home </NavLink>
+        <NavLink to="/" className={location.pathname === "/" ? "active" : ""}> 
+          <HomeOutlined /> Home 
+        </NavLink>
         {token ? (
           <>
-            <NavLink to="/profile"> <ProfileOutlined /> Profile </NavLink>
-            <NavLink to="/cart"> <ShoppingCartOutlined /> Cart </NavLink>
-            <NavLink to="/" onClick={logoutUser}> <LogoutOutlined /> Logout </NavLink>
+            <NavLink to="/profile" className={location.pathname === "/profile" ? "active" : ""}> 
+              <ProfileOutlined /> Profile 
+            </NavLink>
+            <NavLink to="/cart" className={location.pathname === "/cart" ? "active" : ""}> 
+              <ShoppingCartOutlined /> Cart 
+            </NavLink>
+            <NavLink to="/" onClick={logoutUser}> 
+              <LogoutOutlined /> Logout 
+            </NavLink>
             {user?.role === 'admin' && (
-              <NavLink to="/admin"> <DashboardOutlined /> Admin </NavLink>
+              <NavLink to="/admin" className={location.pathname === "/admin" ? "active" : ""}> 
+                <DashboardOutlined /> Admin 
+              </NavLink>
             )}
           </>
         ) : (
           <>
-            <NavLink to="/login"> <LoginOutlined /> Login </NavLink>
-            <NavLink to="/register"> <UserAddOutlined /> Register </NavLink>
+            <NavLink to="/login" className={location.pathname === "/login" ? "active" : ""}> 
+              <LoginOutlined /> Login 
+            </NavLink>
+            <NavLink to="/register" className={location.pathname === "/register" ? "active" : ""}> 
+              <UserAddOutlined /> Register 
+            </NavLink>
           </>
         )}
       </NavLinks>
+      
+      {/* Añadimos el componente ThemeToggle */}
+      <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+
       <MenuButton icon={<MenuOutlined />} onClick={showDrawer} />
       <Drawer
         title="Menu"
@@ -69,20 +84,34 @@ function TheHeader() {
         width={250}
       >
         <DrawerContainer>
-          <NavLink to="/" onClick={onClose}> <HomeOutlined /> Home </NavLink>
+          <NavLink to="/" onClick={onClose} className={location.pathname === "/" ? "active" : ""}> 
+            <HomeOutlined /> Home 
+          </NavLink>
           {token ? (
             <>
-              <NavLink to="/profile" onClick={onClose}> <ProfileOutlined /> Profile </NavLink>
-              <NavLink to="/cart" onClick={onClose}> <ShoppingCartOutlined /> Cart </NavLink>
-              <NavLink to="/" onClick={() => { logoutUser(); onClose(); }}> <LogoutOutlined /> Logout </NavLink>
+              <NavLink to="/profile" onClick={onClose} className={location.pathname === "/profile" ? "active" : ""}> 
+                <ProfileOutlined /> Profile 
+              </NavLink>
+              <NavLink to="/cart" onClick={onClose} className={location.pathname === "/cart" ? "active" : ""}> 
+                <ShoppingCartOutlined /> Cart 
+              </NavLink>
+              <NavLink to="/" onClick={() => { logoutUser(); onClose(); }}> 
+                <LogoutOutlined /> Logout 
+              </NavLink>
               {user?.role === 'admin' && (
-                <NavLink to="/admin" onClick={onClose}> <DashboardOutlined /> Admin </NavLink>
+                <NavLink to="/admin" onClick={onClose} className={location.pathname === "/admin" ? "active" : ""}> 
+                  <DashboardOutlined /> Admin 
+                </NavLink>
               )}
             </>
           ) : (
             <>
-              <NavLink to="/login" onClick={onClose}> <LoginOutlined /> Login </NavLink>
-              <NavLink to="/register" onClick={onClose}> <UserAddOutlined /> Register </NavLink>
+              <NavLink to="/login" onClick={onClose} className={location.pathname === "/login" ? "active" : ""}> 
+                <LoginOutlined /> Login 
+              </NavLink>
+              <NavLink to="/register" onClick={onClose} className={location.pathname === "/register" ? "active" : ""}> 
+                <UserAddOutlined /> Register 
+              </NavLink>
             </>
           )}
         </DrawerContainer>

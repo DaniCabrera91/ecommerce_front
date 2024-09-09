@@ -23,18 +23,16 @@ const EditProductModal = ({ visible, setVisible, onEdit }) => {
         }
     }, [product, form, setValue]);
 
-    // Actualiza los valores del formulario cuando el modal sea visible
     useEffect(() => {
         if (visible && product) {
             updateFormFields();
         }
     }, [visible, product, updateFormFields]);
 
-    // Envía el formulario de Ant Design (sin imagen)
     const onFinishAntd = (values) => {
         const combinedValues = {
             ...values,
-            image: image, // Añade la imagen cargada al objeto de valores
+            image: image, 
         };
 
         if (product.id) {
@@ -81,7 +79,6 @@ const EditProductModal = ({ visible, setVisible, onEdit }) => {
                 </Button>,
             ]}
         >
-            {/* Formulario de Ant Design */}
             <Form form={form} id="editProductForm" onFinish={onFinishAntd} layout="vertical">
                 <Form.Item
                     label="Product Name"

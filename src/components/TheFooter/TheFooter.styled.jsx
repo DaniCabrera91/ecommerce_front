@@ -6,11 +6,10 @@ export const FooterContainer = styled.footer`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: ${({ theme }) => theme.colors.headerFooterBackground}; /* Color de fondo específico para el footer */
+  background-color: ${({ theme }) => theme.colors.headerFooterBackground};
   color: ${({ theme }) => theme.colors.text};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
-
 
 export const FooterContent = styled.div`
   display: flex;
@@ -40,4 +39,15 @@ export const FooterLink = styled(Link)`
 
 export const FooterText = styled.p`
   margin: 0;
+`;
+
+export const FooterGithubLinks = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+
+  a {
+    margin: 0 15px;
+  }
 `;

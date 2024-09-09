@@ -40,22 +40,22 @@ export const FormItem = styled(AntForm.Item)`
 
 // Estilo para el input
 export const InputStyled = styled(AntInput)`
-  background-color: ${({ theme }) => theme.colors.inputBackground};
+  background-color: ${({ theme }) => theme.colors.inputBackground}; // Fondo oscuro en modo oscuro
   border-color: ${({ theme }) => theme.colors.border};
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.text}; // Texto claro
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.textLight};
+    color: ${({ theme }) => theme.colors.textLight || theme.colors.text}; // Asegurar visibilidad del placeholder
   }
 
   &:focus {
-    background-color: ${({ theme }) => theme.colors.inputBackground}; // No cambiar el fondo al hacer clic
-    border-color: ${({ theme }) => theme.colors.highlight}; // Cambiar color del borde al enfocar
-    color: ${({ theme }) => theme.colors.text};
+    background-color: ${({ theme }) => theme.colors.inputBackground}; // No cambiar el fondo al enfocar
+    border-color: ${({ theme }) => theme.colors.highlight}; // Borde visible al enfocar
+    color: ${({ theme }) => theme.colors.text}; // Texto visible
   }
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.highlight};
+    border-color: ${({ theme }) => theme.colors.highlight}; // Cambiar borde al hacer hover
   }
 `;
 
