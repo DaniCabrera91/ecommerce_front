@@ -4,29 +4,29 @@ const ProductsReducer = (state, action) => {
             return {
                 ...state,
                 products: action.payload,
-            };
+            }
         case 'ADD_CART':
             return {
                 ...state,
                 cart: [action.payload, ...state.cart],
-            };
+            }
         case 'CLEAR_CART':
             return {
                 ...state,
                 cart: [],
-            };
+            }
         case 'DELETE_PRODUCT':
             return {
                 ...state,
                 products: state.products.filter(
                     (product) => product.id !== action.payload
                 ),
-            };
+            }
         case 'CREATE_PRODUCT':
             return {
                 ...state,
                 products: [...state.products, action.payload],
-            };
+            }
         case 'GET_PRODUCT_BY_ID':
             return {
                 ...state,
@@ -45,10 +45,10 @@ const ProductsReducer = (state, action) => {
             return {
                 ...state,
                 categories: action.payload,
-            };
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
 export default ProductsReducer

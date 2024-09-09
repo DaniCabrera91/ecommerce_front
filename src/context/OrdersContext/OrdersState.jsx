@@ -17,7 +17,6 @@ export const OrdersProvider = ({ children }) => {
 		try {
 			const response = await axios.post(`${API_URL}/orders`, {
 				productIds,
-				productNames,
 				productPrices,
 				categoryIds,
 				orderDate: new Date().toISOString().split('T')[0],
@@ -30,7 +29,7 @@ export const OrdersProvider = ({ children }) => {
 		} catch (error) {
 			console.error('Error creating order:', error)
 		}
-	};
+	}
 
 	const getOrders = async () => {
     const token = JSON.parse(localStorage.getItem('token'))
@@ -44,17 +43,17 @@ export const OrdersProvider = ({ children }) => {
     try {
         const response = await axios.get(`${API_URL}/orders`, {
             headers: { Authorization: token }
-        });
-        setOrders(response.data);
+        })
+        setOrders(response.data)
     } catch (error) {
         if (error.response?.status === 401) {
             console.error('Unauthorized. Token might be invalid or expired.')
-            setOrders([]);
+            setOrders([])
         } else {
             console.error('Error fetching orders:', error.response?.data || error.message)
         }
     }
-};
+}
 	return (
 		<OrdersContext.Provider value={{ createOrder, getOrders, orders }}>
 			{children}

@@ -30,14 +30,13 @@ export const RightContainer = styled.div`
 export const NavLinks = styled.div`
   display: flex;
   align-items: center;
-  margin-left: auto;  // Este es el ajuste clave
+  margin-left: auto;
   margin-right: 20px;
 
   @media (max-width: 768px) {
     display: none;
   }
 `;
-
 
 export const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.text};

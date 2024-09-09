@@ -1,37 +1,37 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { ProductsContext } from '../../context/ProductsContext/ProductsState';
-import CreateProduct from '../Products/CreateProduct';
-import EditProductModal from '../Products/EditProductModal';
-import { AdminContainer, ProductList, ProductItem, ProductDetails, ActionButtons } from './Admin.styled';
+import React, { useContext, useEffect, useState } from 'react'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { ProductsContext } from '../../context/ProductsContext/ProductsState'
+import CreateProduct from '../Products/CreateProduct'
+import EditProductModal from '../Products/EditProductModal'
+import { AdminContainer, ProductList, ProductItem, ProductDetails, ActionButtons } from './Admin.styled'
 
 const Admin = () => {
-    const { getProducts, products, deleteProduct, getProductById, editProduct } = useContext(ProductsContext);
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const [selectedProductId, setSelectedProductId] = useState(null);
+    const { getProducts, products, deleteProduct, getProductById, editProduct } = useContext(ProductsContext)
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [selectedProductId, setSelectedProductId] = useState(null)
 
     useEffect(() => {
-        getProducts();
-    }, [getProducts]);
+        getProducts()
+    }, [getProducts])
 
     const showModal = async (id) => {
-        setSelectedProductId(id);
-        await getProductById(id);
-        setIsModalVisible(true);
-    };
+        setSelectedProductId(id)
+        await getProductById(id)
+        setIsModalVisible(true)
+    }
 
     const handleEditProduct = (values) => {
         if (selectedProductId) {
             editProduct(values, selectedProductId)
                 .then(() => {
-                    setIsModalVisible(false);
-                    getProducts();
+                    setIsModalVisible(false)
+                    getProducts()
                 })
                 .catch((error) => {
-                    console.error('Error updating product:', error);
-                });
+                    console.error('Error updating product:', error)
+                })
         }
-    };
+    }
 
     return (
         <AdminContainer>
@@ -56,7 +56,7 @@ const Admin = () => {
                     ))}
                 </ProductList>
             ) : (
-                <span>Loading...</span>
+                <span>Cargando...</span>
             )}
             <EditProductModal
                 visible={isModalVisible}
@@ -65,7 +65,7 @@ const Admin = () => {
                 onEdit={handleEditProduct}
             />
         </AdminContainer>
-    );
-};
+    )
+}
 
-export default Admin;
+export default Admin

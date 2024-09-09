@@ -26,13 +26,13 @@ export const darkTheme = {
     primary: '#CA4B24',
     secondary: '#404040',
     buttonText: '#ffffff',
-    text: '#ffffff', // Texto blanco para buena visibilidad
-    textLight: '#cccccc', // Placeholder claro
+    text: '#ffffff',
+    textLight: '#cccccc',
     headerFooterBackground: '#333333',
     highlight: '#ff6347',
     border: '#444444',
     cardBackground: '#666666',
-    inputBackground: '#333333', // Fondo oscuro para los inputs
+    inputBackground: '#333333',
   },
   spacing: {
     large: '2rem',

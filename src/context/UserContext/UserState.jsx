@@ -88,7 +88,7 @@ export const UserProvider = ({ children }) => {
       value={{
         token: state.token,
         user: state.user,
-        role: state.role, // Añadir el rol aquí
+        role: state.role,
         login,
         getUserInfo,
         logout,

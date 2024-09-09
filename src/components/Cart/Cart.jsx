@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-import { ProductsContext } from '../../context/ProductsContext/ProductsState';
-import { OrdersContext } from '../../context/OrdersContext/OrdersState';
-import { CartContainer, CartItem } from './Cart.styled';
-import Button from '../Button/Button';
+import { useContext } from 'react'
+import { ProductsContext } from '../../context/ProductsContext/ProductsState'
+import { OrdersContext } from '../../context/OrdersContext/OrdersState'
+import { CartContainer, CartItem } from './Cart.styled'
+import Button from '../Button/Button'
 
 const Cart = () => {
-  const { cart, clearCart } = useContext(ProductsContext);
-  const { createOrder } = useContext(OrdersContext);
+  const { cart, clearCart } = useContext(ProductsContext)
+  const { createOrder } = useContext(OrdersContext)
 
   const createNewOrder = () => {
     const products = cart.map(item => ({
@@ -14,13 +14,13 @@ const Cart = () => {
       name: item.productName,
       price: item.price,
       categoryId: item.CategoryId,
-    }));
-    createOrder(products);
-    clearCart();
-  };
+    }))
+    createOrder(products)
+    clearCart()
+  }
 
   if (cart.length <= 0) {
-    return <span>No tienes ningún producto añadido</span>;
+    return <span>No tienes ningún producto añadido</span>
   }
 
   return (
@@ -32,11 +32,11 @@ const Cart = () => {
         </CartItem>
       ))}
       <div>
-        <Button onClick={clearCart}>Clear Cart</Button>
-        <Button onClick={createNewOrder}>Create Order</Button>
+        <Button onClick={clearCart}>Limpiar Carrito</Button>
+        <Button onClick={createNewOrder}>Crear Pedido</Button>
       </div>
     </CartContainer>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

@@ -20,6 +20,6 @@ export const CartItem = styled.div`
 
   span {
     font-size: 1rem;
-    color: ${({ theme }) => theme.colors.text}; // Asegúrate de que el color del texto sea visible en ambos temas
+    color: ${({ theme }) => theme.colors.text};
   }
 `;

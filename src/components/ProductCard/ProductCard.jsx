@@ -1,4 +1,4 @@
-import { CardContainer, ProductImage, ProductName, ProductPrice } from './ProductCard.styled';
+import { CardContainer, ProductImage, ProductName, ProductPrice } from './ProductCard.styled'
 
 function ProductCard({ product }) {
   return (
@@ -7,7 +7,7 @@ function ProductCard({ product }) {
       <ProductName>{product.name}</ProductName>
       <ProductPrice>${product.price}</ProductPrice>
     </CardContainer>
-  );
+  )
 }
 
-export default ProductCard;
+export default ProductCard

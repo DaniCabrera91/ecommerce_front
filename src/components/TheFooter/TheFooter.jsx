@@ -1,19 +1,19 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { HomeOutlined, GithubOutlined, LogoutOutlined } from '@ant-design/icons';
-import { UserContext } from '../../context/UserContext/UserState';
-import { FooterContainer, FooterContent, FooterLink, FooterText, FooterGithubLinks } from './TheFooter.styled';
+import { Link, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { HomeOutlined, GithubOutlined, LogoutOutlined } from '@ant-design/icons'
+import { UserContext } from '../../context/UserContext/UserState'
+import { FooterContainer, FooterContent, FooterLink, FooterText, FooterGithubLinks } from './TheFooter.styled'
 
 function Footer() {
-  const navigate = useNavigate();
-  const { token, logout } = useContext(UserContext);
+  const navigate = useNavigate()
+  const { token, logout } = useContext(UserContext)
 
   const logoutUser = () => {
-    logout();
+    logout()
     setTimeout(() => {
-      navigate('/');
-    }, 2000);
-  };
+      navigate('/')
+    }, 2000)
+  }
 
   return (
     <FooterContainer>
@@ -21,13 +21,13 @@ function Footer() {
         <>
           <FooterContent>
             <FooterLink to="/" className="home-link">
-              <HomeOutlined /> Home
+              <HomeOutlined /> Inicio
             </FooterLink>
             <FooterLink to="/" onClick={logoutUser}> 
               <LogoutOutlined /> Logout
             </FooterLink>
           </FooterContent>
-          <FooterText>&copy; 2024 E-Commerce Project. All rights reserved.</FooterText>
+          <FooterText>&copy 2024 E-Commerce Project. All rights reserved.</FooterText>
           <FooterGithubLinks>
             <FooterLink to="https://github.com/denisc911" target="_blank" rel="noopener noreferrer">
               <GithubOutlined /> @denisc911
@@ -41,11 +41,11 @@ function Footer() {
         <>
           <FooterContent>
             <FooterLink to="/" className="home-link">
-              <HomeOutlined /> Home
+              <HomeOutlined /> Inicio
             </FooterLink>
             <FooterLink to="/login">Login</FooterLink>
           </FooterContent>
-          <FooterText>&copy; 2024 E-Commerce Project. All rights reserved.</FooterText>
+          <FooterText>&copy 2024 E-Commerce Project. All rights reserved.</FooterText>
           <FooterGithubLinks>
             <FooterLink to="https://github.com/denisc911" target="_blank" rel="noopener noreferrer">
               <GithubOutlined /> @denisc911
@@ -57,7 +57,7 @@ function Footer() {
         </>
       )}
     </FooterContainer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

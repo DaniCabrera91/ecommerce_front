@@ -5,20 +5,20 @@ const UserReducer = (state, action) => {
 		  ...state,
 		  token: action.payload.token,
 		  user: action.payload.user,
-		  role: action.payload.role, // Añadir el rol
+		  role: action.payload.role,
 		};
 	  case 'GET_USER_INFO':
 		return {
 		  ...state,
 		  user: action.payload,
-		  role: action.payload.role, // Añadir el rol
+		  role: action.payload.role,
 		};
 	  case 'LOGOUT':
 		return {
 		  ...state,
 		  token: null,
 		  user: null,
-		  role: null, // Limpiar el rol al hacer logout
+		  role: null,
 		};
 	  default:
 		return state;

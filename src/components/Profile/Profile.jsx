@@ -1,34 +1,34 @@
-import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../context/UserContext/UserState';
-import { OrdersContext } from '../../context/OrdersContext/OrdersState';
-import { Tabs, List } from 'antd';
-import { ProfileContainer, UserInfo, OrderCard } from './Profile.styled';
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../../context/UserContext/UserState'
+import { OrdersContext } from '../../context/OrdersContext/OrdersState'
+import { Tabs, List } from 'antd'
+import { ProfileContainer, UserInfo, OrderCard } from './Profile.styled'
 
 const Profile = () => {
-  const { getUserInfo, user } = useContext(UserContext);
-  const { getOrders, orders = [] } = useContext(OrdersContext);
-  const [loadingOrders, setLoadingOrders] = useState(true);
-  const [ordersFetched, setOrdersFetched] = useState(false);
+  const { getUserInfo, user } = useContext(UserContext)
+  const { getOrders, orders = [] } = useContext(OrdersContext)
+  const [loadingOrders, setLoadingOrders] = useState(true)
+  const [ordersFetched, setOrdersFetched] = useState(false)
 
   useEffect(() => {
     if (!user) {
-      getUserInfo();
+      getUserInfo()
     }
-  }, [getUserInfo, user]);
+  }, [getUserInfo, user])
 
   useEffect(() => {
     if (user && !ordersFetched) {
-      getOrders().finally(() => setLoadingOrders(false));
-      setOrdersFetched(true);
+      getOrders().finally(() => setLoadingOrders(false))
+      setOrdersFetched(true)
     }
-  }, [user, getOrders, ordersFetched]);
+  }, [user, getOrders, ordersFetched])
 
   if (!user) {
-    return <p>Loading user data...</p>;
+    return <p>Cargando información de usuario...</p>
   }
 
   if (loadingOrders) {
-    return <p>Loading orders...</p>;
+    return <p>Cargando pedidos...</p>
   }
 
   const tabItems = [
@@ -57,9 +57,9 @@ const Profile = () => {
               <List.Item>
                 <OrderCard>
                   <h3>Pedido ID: {order.id}</h3>
-                  <p>Order Date: {order.orderDate}</p>
-                  <p>Delivery Date: {order.deliveryDate}</p>
-                  <p>Order: {order.productNames.join(', ')}</p>
+                  <p>Fecha de pedido: {order.orderDate}</p>
+                  <p>Fecha de entrega: {order.deliveryDate}</p>
+                  <p>Pedido: {order.productNames.join(', ')}</p>
                 </OrderCard>
               </List.Item>
             )}
@@ -69,14 +69,14 @@ const Profile = () => {
         )
       ),
     }
-  ];
+  ]
 
   return (
     <ProfileContainer>
       <h1>Bienvenid@ {user.firstName}</h1>
       <Tabs items={tabItems} defaultActiveKey="1" />
     </ProfileContainer>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

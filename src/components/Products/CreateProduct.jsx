@@ -1,33 +1,33 @@
-import { Button, Form, InputNumber, Input, Select } from 'antd';
-import { useContext, useEffect } from 'react';
-import { ProductsContext } from '../../context/ProductsContext/ProductsState';
+import { Button, Form, InputNumber, Input, Select } from 'antd'
+import { useContext, useEffect } from 'react'
+import { ProductsContext } from '../../context/ProductsContext/ProductsState'
 
 const CreateProduct = () => {
-    const { createProduct, categories, getCategories } = useContext(ProductsContext);
+    const { createProduct, categories, getCategories } = useContext(ProductsContext)
 
     useEffect(() => {
         if (categories.length === 0) {
-            getCategories();
+            getCategories()
         }
-    }, [categories, getCategories]);
+    }, [categories, getCategories])
 
     const onFinish = (values) => {
-        createProduct(values);
-    };
+        createProduct(values)
+    }
 
     return (
         <Form onFinish={onFinish}>
-            <Form.Item label="Product Name" name="productName" rules={[{ required: true, message: 'Please input the product name!' }]}>
-                <Input placeholder="Product name" />
+            <Form.Item label="Product Name" name="productName" rules={[{ required: true, message: 'Por favor introduce un nombre para el producto!' }]}>
+                <Input placeholder="Nombre de producto" />
             </Form.Item>
             <Form.Item label="Price">
-                <Form.Item name="price" noStyle>
+                <Form.Item name="Precio" noStyle>
                     <InputNumber />
                 </Form.Item>
                 <span className="ant-form-text"> €</span>
             </Form.Item>
-            <Form.Item label="Category" name="CategoryId" rules={[{ required: true, message: 'Please select a category!' }]}>
-                <Select placeholder="Select a category">
+            <Form.Item label="Category" name="CategoryId" rules={[{ required: true, message: 'Por favor selecciona una categoría!' }]}>
+                <Select placeholder="Selecciona una categoría">
                     {categories.map(category => (
                         <Select.Option key={category.id} value={category.id}>
                             {category.categoryName}
@@ -38,11 +38,11 @@ const CreateProduct = () => {
 
             <Form.Item>
                 <Button type="primary" htmlType="submit">
-                    Submit
+                    Crear Producto
                 </Button>
             </Form.Item>
         </Form>
-    );
-};
+    )
+}
 
-export default CreateProduct;
+export default CreateProduct

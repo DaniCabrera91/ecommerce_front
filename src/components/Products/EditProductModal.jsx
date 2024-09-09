@@ -1,69 +1,68 @@
-import { Button, Modal, Form, InputNumber, Input, Select } from 'antd';
-import { useContext, useEffect, useCallback, useState } from 'react';
-import { ProductsContext } from '../../context/ProductsContext/ProductsState';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import { Button, Modal, Form, InputNumber, Input, Select } from 'antd'
+import { useContext, useEffect, useCallback, useState } from 'react'
+import { ProductsContext } from '../../context/ProductsContext/ProductsState'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
 
 const EditProductModal = ({ visible, setVisible, onEdit }) => {
-    const { product, categories, editProduct } = useContext(ProductsContext);
-    const [form] = Form.useForm();
-    const [image, setImage] = useState(null); // Estado para la imagen cargada
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+    const { product, categories, editProduct } = useContext(ProductsContext)
+    const [form] = Form.useForm()
+    const [image, setImage] = useState(null)
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm()
 
-    // Actualiza los campos del formulario cuando cambie el producto
     const updateFormFields = useCallback(() => {
         if (product) {
             form.setFieldsValue({
                 productName: product.productName || '',
                 price: product.price || 0,
                 CategoryId: product.CategoryId || undefined,
-            });
-            // Establece valores para react-hook-form
-            setValue('name', product.productName || '');
+            })
+  
+            setValue('name', product.productName || '')
         }
-    }, [product, form, setValue]);
+    }, [product, form, setValue])
 
     useEffect(() => {
         if (visible && product) {
-            updateFormFields();
+            updateFormFields()
         }
-    }, [visible, product, updateFormFields]);
+    }, [visible, product, updateFormFields])
 
     const onFinishAntd = (values) => {
         const combinedValues = {
             ...values,
             image: image, 
-        };
+        }
 
         if (product.id) {
             editProduct(combinedValues, product.id)
                 .then(() => {
-                    setVisible(false);
-                    onEdit(combinedValues);
+                    setVisible(false)
+                    onEdit(combinedValues)
                 })
                 .catch((error) => {
-                    console.error('Error updating product:', error);
-                });
+                    console.error('Error updating product:', error)
+                })
         }
-    };
+    }
 
-    // Envía los datos de imagen usando react-hook-form
+ 
     const onSubmitReactHookForm = (data) => {
-        const formData = new FormData();
-        formData.append('picture', data.picture[0]); // Carga la imagen
-        formData.append('name', data.name);
+        const formData = new FormData()
+        formData.append('picture', data.picture[0])
+        formData.append('name', data.name)
 
         axios.post('http://localhost:3000/upload', formData)
             .then((res) => {
                 if (res.status === 200) {
-                    setImage(res.data.url.path); // Guarda la ruta de la imagen
-                    form.submit(); // Envía el formulario de Ant Design
+                    setImage(res.data.url.path)
+                    form.submit() 
                 } else {
-                    console.log('Error uploading image');
+                    console.log('Error uploading image')
                 }
             })
-            .catch((error) => console.log(error));
-    };
+            .catch((error) => console.log(error))
+    }
 
     return (
         <Modal
@@ -111,7 +110,7 @@ const EditProductModal = ({ visible, setVisible, onEdit }) => {
                     </Select>
                 </Form.Item>
 
-                {/* Campos de React Hook Form, pero sin form envolvente */}
+
                 <Form.Item label="Recipe Details">
                     <input
                         type="text"
@@ -126,7 +125,7 @@ const EditProductModal = ({ visible, setVisible, onEdit }) => {
                     />
                     {errors.picture && <p>{errors.picture.message}</p>}
 
-                    {/* Botón para subir imagen usando react-hook-form */}
+
                     <Button type="primary" onClick={handleSubmit(onSubmitReactHookForm)}>
                         Upload Image
                     </Button>
@@ -139,7 +138,7 @@ const EditProductModal = ({ visible, setVisible, onEdit }) => {
 )}
 
         </Modal>
-    );
-};
+    )
+}
 
-export default EditProductModal;
+export default EditProductModal

@@ -1,29 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { ProductsContext } from '../../context/ProductsContext/ProductsState';
-import { UserContext } from '../../context/UserContext/UserState'; // Importa el contexto del usuario
-import Button from '../Button/Button'; // Asegúrate de usar tu componente Button
-import { ProductsGrid, ProductCardContainer, ProductImage, ProductName, ProductPrice } from './HomeProducts.styled';
+import React, { useContext, useEffect, useState } from 'react'
+import { ProductsContext } from '../../context/ProductsContext/ProductsState'
+import { UserContext } from '../../context/UserContext/UserState'
+import Button from '../Button/Button'
+import { ProductsGrid, ProductCardContainer, ProductImage, ProductName, ProductPrice } from './HomeProducts.styled'
 
 const HomeProducts = () => {
-  const { getProducts, products, addCart } = useContext(ProductsContext);
-  const { token } = useContext(UserContext); // Aquí tomas el token del usuario
-  const [loading, setLoading] = useState(true);
+  const { getProducts, products, addCart } = useContext(ProductsContext)
+  const { token } = useContext(UserContext)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        await getProducts();
+        await getProducts()
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching products:', error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchProducts();
-  }, [getProducts]);
+    fetchProducts()
+  }, [getProducts])
 
-  if (loading) return <div>Loading products...</div>;
+  if (loading) return <div>Cargando productos...</div>
 
   return (
     <ProductsGrid>
@@ -38,7 +38,7 @@ const HomeProducts = () => {
         </ProductCardContainer>
       ))}
     </ProductsGrid>
-  );
-};
+  )
+}
 
-export default HomeProducts;
+export default HomeProducts

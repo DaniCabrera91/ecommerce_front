@@ -3,7 +3,7 @@ import { ProductsContext } from '../../context/ProductsContext/ProductsState'
 
 const Products = () => {
   const { getProducts, products, addCart, cart } = useContext(ProductsContext)
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -23,7 +23,7 @@ const Products = () => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  if (loading) return <div>Loading products...</div>
+  if (loading) return <div>Cargando Productos...</div>
 
   return (
     <>
@@ -31,7 +31,7 @@ const Products = () => {
         <div key={product.id}>
           <span>{product.productName} </span>
           <span>{product.price !== undefined ? product.price.toFixed(2) : 'N/A'}</span>
-          <button onClick={() => addCart(product)}>Add Cart</button>
+          <button onClick={() => addCart(product)}>Agregar al Carrito</button>
         </div>
       ))}
     </>

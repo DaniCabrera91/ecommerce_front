@@ -5,7 +5,7 @@ export const LoginForm = styled.form`
   flex-direction: column;
   gap: 1rem;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 2rem;
   background-color: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 8px;
@@ -16,21 +16,21 @@ export const InputField = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 4px;
   font-size: 1rem;
-  background-color: ${({ theme }) => theme.colors.inputBackground}; // Fondo según el tema
-  color: ${({ theme }) => theme.colors.text}; // Texto según el tema
+  background-color: ${({ theme }) => theme.colors.inputBackground};
+  color: ${({ theme }) => theme.colors.text};
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.textLight || theme.colors.text}; // Placeholder más claro
+    color: ${({ theme }) => theme.colors.textLight || theme.colors.text};
   }
 
   &:focus {
-    background-color: ${({ theme }) => theme.colors.inputBackground}; // Mantener fondo oscuro en modo oscuro
-    border-color: ${({ theme }) => theme.colors.highlight}; // Borde visible al enfocar
-    color: ${({ theme }) => theme.colors.text}; // Texto visible
+    background-color: ${({ theme }) => theme.colors.inputBackground};
+    border-color: ${({ theme }) => theme.colors.highlight};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.highlight}; // Cambiar borde al hacer hover
+    border-color: ${({ theme }) => theme.colors.highlight};
   }
 `;
 

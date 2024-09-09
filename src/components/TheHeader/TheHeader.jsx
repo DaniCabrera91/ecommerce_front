@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; 
-import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext/UserState';
+import React, { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from '../../context/UserContext/UserState'
 import {
   ShoppingCartOutlined,
   HomeOutlined,
@@ -11,45 +11,45 @@ import {
   LoginOutlined,
   DashboardOutlined,
   MenuOutlined
-} from '@ant-design/icons';
-import { HeaderContainer, NavLink, HeaderTitle, MenuButton, DrawerContainer, NavLinks, Drawer } from './TheHeader.styled'; 
-import ThemeToggle from '../../theme/ThemeToggle'; // Importamos el componente ThemeToggle
+} from '@ant-design/icons'
+import { HeaderContainer, NavLink, HeaderTitle, MenuButton, DrawerContainer, NavLinks, Drawer } from './TheHeader.styled'
+import ThemeToggle from '../../theme/ThemeToggle'
 
 function TheHeader({ toggleTheme, isDarkMode }) {
-  const navigate = useNavigate();
-  const location = useLocation(); 
-  const { token, logout, user } = useContext(UserContext);
-  const [drawerVisible, setDrawerVisible] = useState(false);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { token, logout, user } = useContext(UserContext)
+  const [drawerVisible, setDrawerVisible] = useState(false)
 
   const logoutUser = () => {
-    logout();
+    logout()
     setTimeout(() => {
-      navigate('/');
-    }, 2000);
-  };
+      navigate('/')
+    }, 2000)
+  }
 
   const showDrawer = () => {
-    setDrawerVisible(true);
-  };
+    setDrawerVisible(true)
+  }
 
   const onClose = () => {
-    setDrawerVisible(false);
-  };
+    setDrawerVisible(false)
+  }
 
   return (
     <HeaderContainer>
       <HeaderTitle>DenDA</HeaderTitle>
       <NavLinks>
         <NavLink to="/" className={location.pathname === "/" ? "active" : ""}> 
-          <HomeOutlined /> Home 
+          <HomeOutlined /> Inicio 
         </NavLink>
         {token ? (
           <>
             <NavLink to="/profile" className={location.pathname === "/profile" ? "active" : ""}> 
-              <ProfileOutlined /> Profile 
+              <ProfileOutlined /> Perfil 
             </NavLink>
             <NavLink to="/cart" className={location.pathname === "/cart" ? "active" : ""}> 
-              <ShoppingCartOutlined /> Cart 
+              <ShoppingCartOutlined /> Carrito 
             </NavLink>
             <NavLink to="/" onClick={logoutUser}> 
               <LogoutOutlined /> Logout 
@@ -66,13 +66,12 @@ function TheHeader({ toggleTheme, isDarkMode }) {
               <LoginOutlined /> Login 
             </NavLink>
             <NavLink to="/register" className={location.pathname === "/register" ? "active" : ""}> 
-              <UserAddOutlined /> Register 
+              <UserAddOutlined /> Registro 
             </NavLink>
           </>
         )}
       </NavLinks>
       
-      {/* Añadimos el componente ThemeToggle */}
       <ThemeToggle toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
 
       <MenuButton icon={<MenuOutlined />} onClick={showDrawer} />
@@ -85,15 +84,15 @@ function TheHeader({ toggleTheme, isDarkMode }) {
       >
         <DrawerContainer>
           <NavLink to="/" onClick={onClose} className={location.pathname === "/" ? "active" : ""}> 
-            <HomeOutlined /> Home 
+            <HomeOutlined /> Inicio 
           </NavLink>
           {token ? (
             <>
               <NavLink to="/profile" onClick={onClose} className={location.pathname === "/profile" ? "active" : ""}> 
-                <ProfileOutlined /> Profile 
+                <ProfileOutlined /> Perfil 
               </NavLink>
               <NavLink to="/cart" onClick={onClose} className={location.pathname === "/cart" ? "active" : ""}> 
-                <ShoppingCartOutlined /> Cart 
+                <ShoppingCartOutlined /> Carrito 
               </NavLink>
               <NavLink to="/" onClick={() => { logoutUser(); onClose(); }}> 
                 <LogoutOutlined /> Logout 
@@ -110,14 +109,14 @@ function TheHeader({ toggleTheme, isDarkMode }) {
                 <LoginOutlined /> Login 
               </NavLink>
               <NavLink to="/register" onClick={onClose} className={location.pathname === "/register" ? "active" : ""}> 
-                <UserAddOutlined /> Register 
+                <UserAddOutlined /> Registro 
               </NavLink>
             </>
           )}
         </DrawerContainer>
       </Drawer>
     </HeaderContainer>
-  );
+  )
 }
 
-export default TheHeader;
+export default TheHeader
