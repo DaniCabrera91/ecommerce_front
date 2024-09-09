@@ -262,15 +262,16 @@ Se hace uso de multer para apoyar como middleware.
 Para instalar y configurar el proyecto, sigue estos pasos:
 
 1. Clona el repositorio:
-   ```bash
+```bash
    git clone https://github.com/DaniCabrera91/ecommerce_front
    npm i 
-  ```
+```
 2. Configura tu BD/backend
-
-3. Inicia tu proyecto
+Inicialo Tambíen
+3. Inicia tu Frontend
+```bash
 npm run dev  / npm start {cuando este acabado}
-
+```
 # Extras Realizados
 
 ## Admin CRUD
