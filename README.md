@@ -92,9 +92,16 @@ function App() {
 export default App;
 
 ##  Estructura de Ficheros y directorios de los Componentes y contexts:
+# Proyecto Vite + React
+
+Este proyecto es una aplicación web construida con Vite y React. A continuación se detalla la estructura de carpetas y archivos del proyecto.
+
+## Estructura del Proyecto
+
+```plaintext
 src/
-├── components/
-│   ├── Products/ ### CRUD de Productos
+├── components/              ### Componentes reutilizables y vistas principales
+│   ├── Products/            ### CRUD de Productos
 │   │   ├── EditProductModal.jsx
 │   │   ├── default-image.jpg
 │   │   ├── CreateProduct.jsx
@@ -104,51 +111,150 @@ src/
 │   │   ├── EditProductModal.styled.jsx
 │   │   ├── CreateProduct.styled.jsx
 │   │   ├── ImgProducts.jsx
-│   ├── TheHeader/  ### Estilos de Cabecera
+│   ├── TheHeader/           ### Estilos de Cabecera
 │   │   ├── TheHeader.jsx
 │   │   ├── TheHeader.styled.jsx
-│   ├── Admin/    ### Perfil Admin
+│   ├── Admin/               ### Perfil Admin
 │   │   ├── Admin.jsx
 │   │   ├── Admin.styled.jsx
-│   ├── Profile/   ### Perfil de usuario
+│   ├── Profile/             ### Perfil de usuario
 │   │   ├── Profile.jsx
 │   │   ├── Profile.styled.jsx
-│   ├── RegisterUser/    ### Registro de usuarios
+│   ├── RegisterUser/        ### Registro de usuarios
 │   │   ├── RegisterUser.jsx
-│   ├── TheFooter/   ### Diseño del Footer de la página
+│   ├── TheFooter/           ### Diseño del Footer de la página
 │   │   ├── TheFooter.jsx
 │   │   ├── TheFooter.styled.jsx
-│   ├── Cart/    ### Carrito de la compra
+│   ├── Cart/                ### Carrito de la compra
 │   │   ├── Cart.jsx
 │   │   ├── Cart.styled.jsx
-│   ├── Login/   ###  Login de la página
+│   ├── Login/               ### Login de la página
 │   │   ├── Login.jsx
 │   │   ├── Login.styled.jsx
-│   ├── Forbidden/    ### Mensaje para usuarios no admin al intentar acceder a privilegios
+│   ├── Forbidden/           ### Mensaje para usuarios no admin al intentar acceder a privilegios
 │   │   ├── Forbidden.jsx
 │   │   ├── Forbidden.styled.jsx
-│   ├── ProductCard/   ### Tarjetas de productos
+│   ├── ProductCard/         ### Tarjetas de productos
 │   │   ├── ProductCard.styled.jsx
 │   │   ├── ProductCard.jsx
-│   ├── Button/   ### Estilos de botones
+│   ├── Button/              ### Estilos de botones
 │   │   ├── Button.styled.jsx
 │   │   ├── Button.jsx
-│   ├── ProtectedRoute/    ### Ruta solo accesible a Admin (oculta el boton a otros usuarios)
+│   ├── ProtectedRoute/      ### Ruta solo accesible a Admin (oculta el botón a otros usuarios)
 │   │   ├── ProtectedRoute.jsx
-├── context/
-│   ├── ProductsContext/   ### Contextos de productos
+├── context/                 ### Contextos para manejar el estado global
+│   ├── ProductsContext/     ### Contextos de productos
 │   │   ├── ProductsState.jsx
 │   │   ├── ProductsReducer.jsx
-│   ├── UserContext/  ### Contextos de usuario
+│   ├── UserContext/         ### Contextos de usuario
 │   │   ├── UserState.jsx
 │   │   ├── UserReducer.jsx
-│   ├── OrdersContext/   ### Contexto de pedidos
+│   ├── OrdersContext/       ### Contexto de pedidos
 │   │   ├── OrdersState.jsx
-├── assets/
-├── theme/
-├── views/
-├── public/
+├── assets/                  ### Archivos estáticos como imágenes y fuentes
+├── theme/                   ### Temas y configuraciones globales de estilo
+├── views/                   ### Vistas principales de la aplicación
+├── public/                  ### Archivos públicos accesibles directamente
 
+```
+
+### `src/`
+
+#### `components/`
+Componentes reutilizables y vistas principales de la aplicación.
+
+- **`Products/`**: CRUD de Productos
+  - `EditProductModal.jsx`: Modal para editar productos.
+  - `default-image.jpg`: Imagen por defecto para productos.
+  - `CreateProduct.jsx`: Componente para crear un nuevo producto.
+  - `HomeProducts.styled.jsx`: Estilos para la vista de productos en la página de inicio.
+  - `HomeProducts.jsx`: Componente que muestra los productos en la página de inicio.
+  - `Products.jsx`: Componente principal para la gestión de productos.
+  - `EditProductModal.styled.jsx`: Estilos para el modal de edición de productos.
+  - `CreateProduct.styled.jsx`: Estilos para el formulario de creación de productos.
+  - `ImgProducts.jsx`: Componente para mostrar imágenes de productos.
+
+- **`TheHeader/`**: Estilos de Cabecera
+  - `TheHeader.jsx`: Componente de la cabecera de la página.
+  - `TheHeader.styled.jsx`: Estilos para la cabecera.
+
+- **`Admin/`**: Perfil Admin
+  - `Admin.jsx`: Componente del perfil de administrador.
+  - `Admin.styled.jsx`: Estilos para el perfil de administrador.
+
+- **`Profile/`**: Perfil de usuario
+  - `Profile.jsx`: Componente del perfil de usuario.
+  - `Profile.styled.jsx`: Estilos para el perfil de usuario.
+
+- **`RegisterUser/`**: Registro de usuarios
+  - `RegisterUser.jsx`: Componente para el registro de nuevos usuarios.
+
+- **`TheFooter/`**: Diseño del Footer de la página
+  - `TheFooter.jsx`: Componente del pie de página.
+  - `TheFooter.styled.jsx`: Estilos para el pie de página.
+
+- **`Cart/`**: Carrito de la compra
+  - `Cart.jsx`: Componente del carrito de compras.
+  - `Cart.styled.jsx`: Estilos para el carrito de compras.
+
+- **`Login/`**: Login de la página
+  - `Login.jsx`: Componente de inicio de sesión.
+  - `Login.styled.jsx`: Estilos para el inicio de sesión.
+
+- **`Forbidden/`**: Mensaje para usuarios no admin al intentar acceder a privilegios
+  - `Forbidden.jsx`: Componente para mostrar un mensaje de acceso prohibido.
+  - `Forbidden.styled.jsx`: Estilos para el mensaje de acceso prohibido.
+
+- **`ProductCard/`**: Tarjetas de productos
+  - `ProductCard.jsx`: Componente para mostrar la tarjeta de un producto.
+  - `ProductCard.styled.jsx`: Estilos para la tarjeta de producto.
+
+- **`Button/`**: Estilos de botones
+  - `Button.jsx`: Componente de botón.
+  - `Button.styled.jsx`: Estilos para el botón.
+
+- **`ProtectedRoute/`**: Ruta solo accesible a Admin
+  - `ProtectedRoute.jsx`: Componente para rutas protegidas accesibles solo por administradores.
+
+#### `context/`
+Contextos para manejar el estado global de la aplicación.
+
+- **`ProductsContext/`**: Contexto de productos
+  - `ProductsState.jsx`: Estado del contexto de productos.
+  - `ProductsReducer.jsx`: Reductor para manejar las acciones del contexto de productos.
+
+- **`UserContext/`**: Contexto de usuario
+  - `UserState.jsx`: Estado del contexto de usuario.
+  - `UserReducer.jsx`: Reductor para manejar las acciones del contexto de usuario.
+
+- **`OrdersContext/`**: Contexto de pedidos
+  - `OrdersState.jsx`: Estado del contexto de pedidos.
+
+#### `assets/`
+Archivos estáticos como imágenes y fuentes.
+
+#### `theme/`
+Temas y configuraciones globales de estilo.
+
+#### `views/`
+Vistas principales de la aplicación.
+
+#### `public/`
+Archivos públicos accesibles directamente, como `index.html`.
+
+## Instalación y Configuración
+
+Para instalar y configurar el proyecto, sigue estos pasos:
+
+1. Clona el repositorio:
+   ```bash
+   git clone <url-del-repositorio>
+   npm i 
+  ```
+2. Configura tu BD/backend
+
+3. Inicia tu proyecto
+npm run dev  / npm start {cuando este acabado}
 
 # Extras Realizados
 
