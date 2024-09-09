@@ -2,7 +2,7 @@
 [@DaniCabrera91](https://github.com/DaniCabrera91)
 [@denisc911](https://github.com/denisc911)
 
-Este proyecto es una aplicación web de un ecommerce que permite a los usuarios registrarse, iniciar sesión, navegar por los productos, agregarlos al carrito, y gestionar su perfil con sus pedidos.
+Este proyecto es una aplicación web de un ecommerce que permite a los usuarios registrarse, iniciar sesión, navegar por los productos, agregarlos al carrito, gestionarlos mediante un CRUD y gestionar su perfil con sus pedidos.
 
 ## Componentes del proyecto básicos
 
@@ -28,12 +28,12 @@ Este proyecto es una aplicación web de un ecommerce que permite a los usuarios 
 
 El enrutado de la aplicación se hace con **React Router**. Donde las rutas básicas son:
 
-- `/home`: Página de inicio de la aplicación.
+- `/home`: Página de inicio.
 - `/login`: Página de inicio de sesión.
 - `/register`: Página de registro.
 - `/profile`: Página del perfil del usuario logueado.
 - `/cart`: Carrito de compra del usuario
-- `/orders`:Pedidos realizados por el usuario
+- `/orders`: Pedidos realizados por el usuario
 - `/admin`: Solo visible para usuarios administradores permite CRUD de productos.
 
 El archivo de configuración de rutas principales se encuentra en el componente `App.jsx`
@@ -242,13 +242,28 @@ Vistas principales de la aplicación.
 #### `public/`
 Archivos públicos accesibles directamente, como `index.html`.
 
+## Subida de imagenes mediante cloudinary
+Será mediante la URL:
+
+localhost:3000/upload
+
+### Configuracion de Cloudinary
+```bash
+cloudinary.config({
+    cloud_name: 'dhn4hwunj',
+    api_key: '879184289568791',
+    api_secret: '0C95qm-asi74Ebrie7KjpHW12as',
+    })
+```
+Se hace uso de multer para apoyar como middleware.
+
 ## Instalación y Configuración
 
 Para instalar y configurar el proyecto, sigue estos pasos:
 
 1. Clona el repositorio:
    ```bash
-   git clone <url-del-repositorio>
+   git clone https://github.com/DaniCabrera91/ecommerce_front
    npm i 
   ```
 2. Configura tu BD/backend
