@@ -5,7 +5,7 @@ import { HomeViewContainer, HomeViewSubtitle } from './HomeView.styled';
 function HomeView() {
   return (
     <HomeViewContainer>
-      <HomeViewSubtitle>Special Offers</HomeViewSubtitle>
+      <HomeViewSubtitle>SHOP</HomeViewSubtitle>
       <HomeProducts />
     </HomeViewContainer>
   );

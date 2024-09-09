@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ProductsContext } from '../../context/ProductsContext/ProductsState';
-import { ProductsGrid, ProductCardContainer, ProductImage, ProductName, ProductPrice, AddToCartButton } from './HomeProducts.styled';
+import { UserContext } from '../../context/UserContext/UserState'; // Importa el contexto del usuario
+import Button from '../Button/Button'; // Asegúrate de usar tu componente Button
+import { ProductsGrid, ProductCardContainer, ProductImage, ProductName, ProductPrice } from './HomeProducts.styled';
 
 const HomeProducts = () => {
   const { getProducts, products, addCart } = useContext(ProductsContext);
+  const { token } = useContext(UserContext); // Aquí tomas el token del usuario
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +32,9 @@ const HomeProducts = () => {
           <ProductImage src={product.image || "/src/components/Products/default-image.jpg"} alt={product.productName} />
           <ProductName>{product.productName}</ProductName>
           <ProductPrice>{`$${product.price.toFixed(2)}`}</ProductPrice>
-          <AddToCartButton onClick={() => addCart(product)}>Add to Cart</AddToCartButton>
+          <Button onClick={() => addCart(product)} disabled={!token}>
+            {token ? 'Add to Cart' : 'Login to Purchase'}
+          </Button>
         </ProductCardContainer>
       ))}
     </ProductsGrid>

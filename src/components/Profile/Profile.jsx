@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext/UserState';
 import { OrdersContext } from '../../context/OrdersContext/OrdersState';
-import { Tabs, List, Card } from 'antd';
+import { Tabs, List } from 'antd';
 import { ProfileContainer, UserInfo, OrderCard } from './Profile.styled';
 
 const Profile = () => {

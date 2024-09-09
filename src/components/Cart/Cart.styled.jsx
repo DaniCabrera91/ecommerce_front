@@ -5,10 +5,10 @@ export const CartContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
-  background-color: #f5f5f5;
+  background-color: ${({ theme }) => theme.colors.cardBackground};
   border-radius: 10px;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 2rem auto;
 `;
 
 export const CartItem = styled.div`
@@ -16,30 +16,10 @@ export const CartItem = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 1rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
 
   span {
     font-size: 1rem;
-    color: #333;
-  }
-`;
-
-export const CartButtons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 1rem;
-
-  button {
-    padding: 0.75rem;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #2980b9;
-    }
+    color: ${({ theme }) => theme.colors.text}; // Asegúrate de que el color del texto sea visible en ambos temas
   }
 `;

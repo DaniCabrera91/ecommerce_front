@@ -1,7 +1,8 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ProductsContext } from '../../context/ProductsContext/ProductsState';
 import { OrdersContext } from '../../context/OrdersContext/OrdersState';
-import { CartContainer, CartItem, CartButtons } from './Cart.styled';
+import { CartContainer, CartItem } from './Cart.styled';
+import Button from '../Button/Button';
 
 const Cart = () => {
   const { cart, clearCart } = useContext(ProductsContext);
@@ -30,10 +31,10 @@ const Cart = () => {
           <span>{cartItem.price.toFixed(2)} €</span>
         </CartItem>
       ))}
-      <CartButtons>
-        <button onClick={clearCart}>Clear Cart</button>
-        <button onClick={createNewOrder}>Create Order</button>
-      </CartButtons>
+      <div>
+        <Button onClick={clearCart}>Clear Cart</Button>
+        <Button onClick={createNewOrder}>Create Order</Button>
+      </div>
     </CartContainer>
   );
 };

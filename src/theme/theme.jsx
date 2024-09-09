@@ -1,24 +1,41 @@
-const theme = {
-    colors: {
-      primary: '#3498db',
-      secondary: '#2ecc71',
-      danger: '#e74c3c',
-      text: '#333',
-      background: '#f5f5f5',
-      heading: '#222',
-    },
-    fontSize: {
-      base: '16px',
-      large: '18px',
-      small: '14px',
-    },
-    spacing: {
-      base: '1rem',
-      large: '2rem',
-      small: '0.5rem',
-    },
-    borderRadius: '4px',
-  };
-  
-  export default theme;
-  
+// Definiciones en lightTheme
+export const lightTheme = {
+  colors: {
+    background: '#f0f0f0',
+    primary: '#CA4B24',
+    secondary: '#e0e0e0',
+    buttonText: '#ffffff',
+    text: '#000000',
+    headerFooterBackground: '#e5e5e5', 
+    highlight: '#ff6347', 
+    border: '#e0e0e0',
+    cardBackground: '#e0e0e0',
+  },
+  spacing: {
+    large: '2rem',
+  },
+  fontSize: {
+    large: '2rem',
+  },
+};
+
+// Definiciones en darkTheme
+export const darkTheme = {
+  colors: {
+    background: '#505050',
+    primary: '#CA4B24',
+    secondary: '#404040',
+    buttonText: '#ffffff',
+    text: '#ffffff',
+    headerFooterBackground: '#333333',
+    highlight: '#ff6347',
+    border: '#444444',
+    cardBackground: '#666666',
+  },
+  spacing: {
+    large: '2rem',
+  },
+  fontSize: {
+    large: '2rem',
+  },
+};

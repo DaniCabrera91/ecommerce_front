@@ -1,129 +1,91 @@
-import React, { useState } from 'react'
-import { Form, Input, Button, message } from 'antd'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
+import axios from 'axios';
+import { FormContainer, FormItem, InputStyled, ButtonStyled } from './RegisterUser.styled';
 
-const API_URL = import.meta.env.VITE_API_URL
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Register = () => {
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await axios.post(`${API_URL}/users`, values)
-      message.success('Usuario registrado con éxito')
-      navigate('/')
+      await axios.post(`${API_URL}/users`, values);
+      message.success('Usuario registrado con éxito');
+      navigate('/');
     } catch (error) {
-      message.error('Error al registrar el usuario')
-      console.error('Error de registro:', error)
+      message.error('Error al registrar el usuario');
+      console.error('Error de registro:', error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
   return (
-    <div className="register-container">
+    <FormContainer name="register" onFinish={onFinish} layout="vertical" initialValues={{ remember: true }}>
       <h2>Registro de Usuario</h2>
-      <Form
-        name="register"
-        onFinish={onFinish}
-        layout="vertical"
-        initialValues={{
-          remember: true,
-        }}
+
+      <FormItem
+        label="Nombre"
+        name="firstName"
+        rules={[{ required: true, message: 'Por favor ingrese su nombre' }]}
       >
-        <Form.Item
-          label="Nombre"
-          name="firstName"
-          rules={[
-            {
-              required: true,
-              message: 'Por favor ingrese su nombre',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+        <InputStyled placeholder="Nombre" />
+      </FormItem>
 
-        <Form.Item
-          label="Apellido"
-          name="lastName"
-          rules={[
-            {
-              required: true,
-              message: 'Por favor ingrese su apellido',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+      <FormItem
+        label="Apellido"
+        name="lastName"
+        rules={[{ required: true, message: 'Por favor ingrese su apellido' }]}
+      >
+        <InputStyled placeholder="Apellido" />
+      </FormItem>
 
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            {
-              type: 'email',
-              message: 'El correo electrónico no es válido',
-            },
-            {
-              required: true,
-              message: 'Por favor ingrese su correo electrónico',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+      <FormItem
+        label="Email"
+        name="email"
+        rules={[
+          { type: 'email', message: 'El correo electrónico no es válido' },
+          { required: true, message: 'Por favor ingrese su correo electrónico' }
+        ]}
+      >
+        <InputStyled placeholder="Email" />
+      </FormItem>
 
-        <Form.Item
-          label="Contraseña"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Por favor ingrese su contraseña',
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
+      <FormItem
+        label="Contraseña"
+        name="password"
+        rules={[{ required: true, message: 'Por favor ingrese su contraseña' }]}
+      >
+        <InputStyled placeholder="Contraseña" />
+      </FormItem>
 
-        <Form.Item
-          label="Dirección"
-          name="address"
-          rules={[
-            {
-              required: true,
-              message: 'Por favor ingrese su dirección',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+      <FormItem
+        label="Dirección"
+        name="address"
+        rules={[{ required: true, message: 'Por favor ingrese su dirección' }]}
+      >
+        <InputStyled placeholder="Dirección" />
+      </FormItem>
 
-        <Form.Item
-          label="Teléfono"
-          name="phone"
-          rules={[
-            {
-              required: true,
-              message: 'Por favor ingrese su teléfono',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+      <FormItem
+        label="Teléfono"
+        name="phone"
+        rules={[{ required: true, message: 'Por favor ingrese su teléfono' }]}
+      >
+        <InputStyled placeholder="Teléfono" />
+      </FormItem>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Registrar
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+      <FormItem>
+        <ButtonStyled type="primary" htmlType="submit" loading={loading}>
+          Registrar
+        </ButtonStyled>
+      </FormItem>
+    </FormContainer>
   );
 };
 
-export default Register
+export default Register;

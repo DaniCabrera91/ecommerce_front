@@ -1,51 +1,23 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  /* Reset CSS */
-  *, *::before, *::after {
-    box-sizing: border-box;
+  body {
     margin: 0;
     padding: 0;
-  }
-
-  /* Global Styles */
-  html, body {
-    font-family: 'Arial', sans-serif;
-    font-size: ${({ theme }) => theme.fontSize.base};
-    line-height: 1.6;
-    background-color: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.text};
-    height: 100%;
-    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: ${(props) => props.theme.colors.background};
+    color: ${(props) => props.theme.colors.text};
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   a {
+    color: ${(props) => props.theme.colors.text};
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.primary};
-    
-    &:hover {
-      color: ${({ theme }) => theme.colors.secondary};
-    }
+    transition: color 0.3s;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 1rem;
-    color: ${({ theme }) => theme.colors.heading};
-  }
-
-  p {
-    margin-bottom: 1rem;
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  button {
-    cursor: pointer;
-    border: none;
-    background: none;
-    padding: 0;
+  a:hover {
+    color: ${(props) => props.theme.colors.highlight};
   }
 `;
 

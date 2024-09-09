@@ -6,10 +6,11 @@ export const FooterContainer = styled.footer`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: ${({ theme }) => (theme === 'dark' ? '#333' : '#fff')};
-  color: ${({ theme }) => (theme === 'dark' ? '#fff' : '#000')};
-  border-top: 1px solid ${({ theme }) => (theme === 'dark' ? '#444' : '#ddd')};
+  background-color: ${({ theme }) => theme.colors.headerFooterBackground}; /* Color de fondo específico para el footer */
+  color: ${({ theme }) => theme.colors.text};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
+
 
 export const FooterContent = styled.div`
   display: flex;
@@ -23,12 +24,13 @@ export const FooterContent = styled.div`
 `;
 
 export const FooterLink = styled(Link)`
-  color: ${({ theme }) => (theme === 'dark' ? '#fff' : '#000')};
+  color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
   margin: 0 10px;
+  transition: color 0.3s;
 
   &:hover {
-    color: ${({ theme }) => (theme === 'dark' ? '#ffeb3b' : '#ff9800')};
+    color: ${({ theme }) => theme.colors.highlight};
   }
 
   svg {
