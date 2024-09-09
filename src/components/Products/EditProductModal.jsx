@@ -1,11 +1,16 @@
 import { Button, Modal, Form, InputNumber, Input, Select } from 'antd';
-import { useContext, useEffect, useCallback } from 'react';
+import { useContext, useEffect, useCallback, useState } from 'react';
 import { ProductsContext } from '../../context/ProductsContext/ProductsState';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const EditProductModal = ({ visible, setVisible, onEdit }) => {
     const { product, categories, editProduct } = useContext(ProductsContext);
     const [form] = Form.useForm();
+    const [image, setImage] = useState(null); // Estado para la imagen cargada
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
+    // Actualiza los campos del formulario cuando cambie el producto
     const updateFormFields = useCallback(() => {
         if (product) {
             form.setFieldsValue({
@@ -13,26 +18,53 @@ const EditProductModal = ({ visible, setVisible, onEdit }) => {
                 price: product.price || 0,
                 CategoryId: product.CategoryId || undefined,
             });
+            // Establece valores para react-hook-form
+            setValue('name', product.productName || '');
         }
-    }, [product, form]);
+    }, [product, form, setValue]);
 
+    // Actualiza los valores del formulario cuando el modal sea visible
     useEffect(() => {
         if (visible && product) {
             updateFormFields();
         }
     }, [visible, product, updateFormFields]);
 
-    const onFinish = (values) => {
+    // Envía el formulario de Ant Design (sin imagen)
+    const onFinishAntd = (values) => {
+        const combinedValues = {
+            ...values,
+            image: image, // Añade la imagen cargada al objeto de valores
+        };
+
         if (product.id) {
-            editProduct(values, product.id)
+            editProduct(combinedValues, product.id)
                 .then(() => {
                     setVisible(false);
-                    onEdit(values);
+                    onEdit(combinedValues);
                 })
                 .catch((error) => {
                     console.error('Error updating product:', error);
                 });
         }
+    };
+
+    // Envía los datos de imagen usando react-hook-form
+    const onSubmitReactHookForm = (data) => {
+        const formData = new FormData();
+        formData.append('picture', data.picture[0]); // Carga la imagen
+        formData.append('name', data.name);
+
+        axios.post('http://localhost:3000/upload', formData)
+            .then((res) => {
+                if (res.status === 200) {
+                    setImage(res.data.url.path); // Guarda la ruta de la imagen
+                    form.submit(); // Envía el formulario de Ant Design
+                } else {
+                    console.log('Error uploading image');
+                }
+            })
+            .catch((error) => console.log(error));
     };
 
     return (
@@ -49,7 +81,8 @@ const EditProductModal = ({ visible, setVisible, onEdit }) => {
                 </Button>,
             ]}
         >
-            <Form form={form} id="editProductForm" onFinish={onFinish} layout="vertical">
+            {/* Formulario de Ant Design */}
+            <Form form={form} id="editProductForm" onFinish={onFinishAntd} layout="vertical">
                 <Form.Item
                     label="Product Name"
                     name="productName"
@@ -70,19 +103,44 @@ const EditProductModal = ({ visible, setVisible, onEdit }) => {
                 >
                     <Select placeholder="Select a category">
                         {categories && categories.length > 0 ? (
-                            categories.map(category => (
-                                category.id && category.categoryName ? (
-                                    <Select.Option key={category.id} value={category.id}>
-                                        {category.categoryName}
-                                    </Select.Option>
-                                ) : null
+                            categories.map((category) => (
+                                <Select.Option key={category.id} value={category.id}>
+                                    {category.categoryName}
+                                </Select.Option>
                             ))
                         ) : (
                             <Select.Option disabled>Loading categories...</Select.Option>
                         )}
                     </Select>
                 </Form.Item>
+
+                {/* Campos de React Hook Form, pero sin form envolvente */}
+                <Form.Item label="Recipe Details">
+                    <input
+                        type="text"
+                        placeholder="Recipe name"
+                        {...register('name', { required: 'Recipe name is required' })}
+                    />
+                    {errors.name && <p>{errors.name.message}</p>}
+
+                    <input
+                        type="file"
+                        {...register('picture', { required: 'Image is required' })}
+                    />
+                    {errors.picture && <p>{errors.picture.message}</p>}
+
+                    {/* Botón para subir imagen usando react-hook-form */}
+                    <Button type="primary" onClick={handleSubmit(onSubmitReactHookForm)}>
+                        Upload Image
+                    </Button>
+                </Form.Item>
             </Form>
+            {(image && 
+<img width={400} src={image} alt="" />
+) || (
+<p>La imagen no está subida todavía</p>
+)}
+
         </Modal>
     );
 };

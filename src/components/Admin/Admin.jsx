@@ -41,7 +41,7 @@ const Admin = () => {
                     {products.map((product) => (
                         <ProductItem key={product.id}>
                             <ProductDetails>
-                                <span>{product.productName}</span>
+                                <span>{product.productName}</span>git 
                                 <span>{product.price !== undefined ? product.price.toFixed(2) : 'N/A'}</span>
                             </ProductDetails>
                             <ActionButtons>
