@@ -92,63 +92,7 @@ function App() {
 export default App;
 
 ##  Estructura de Ficheros y directorios de los Componentes y contexts:
-src/
-├── components/
-│   ├── Products/ ### CRUD de Productos
-│   │   ├── EditProductModal.jsx
-│   │   ├── default-image.jpg
-│   │   ├── CreateProduct.jsx
-│   │   ├── HomeProducts.styled.jsx
-│   │   ├── HomeProducts.jsx
-│   │   ├── Products.jsx
-│   │   ├── EditProductModal.styled.jsx
-│   │   ├── CreateProduct.styled.jsx
-│   │   ├── ImgProducts.jsx
-│   ├── TheHeader/  ### Estilos de Cabecera
-│   │   ├── TheHeader.jsx
-│   │   ├── TheHeader.styled.jsx
-│   ├── Admin/    ### Perfil Admin
-│   │   ├── Admin.jsx
-│   │   ├── Admin.styled.jsx
-│   ├── Profile/   ### Perfil de usuario
-│   │   ├── Profile.jsx
-│   │   ├── Profile.styled.jsx
-│   ├── RegisterUser/    ### Registro de usuarios
-│   │   ├── RegisterUser.jsx
-│   ├── TheFooter/   ### Diseño del Footer de la página
-│   │   ├── TheFooter.jsx
-│   │   ├── TheFooter.styled.jsx
-│   ├── Cart/    ### Carrito de la compra
-│   │   ├── Cart.jsx
-│   │   ├── Cart.styled.jsx
-│   ├── Login/   ###  Login de la página
-│   │   ├── Login.jsx
-│   │   ├── Login.styled.jsx
-│   ├── Forbidden/    ### Mensaje para usuarios no admin al intentar acceder a privilegios
-│   │   ├── Forbidden.jsx
-│   │   ├── Forbidden.styled.jsx
-│   ├── ProductCard/   ### Tarjetas de productos
-│   │   ├── ProductCard.styled.jsx
-│   │   ├── ProductCard.jsx
-│   ├── Button/   ### Estilos de botones
-│   │   ├── Button.styled.jsx
-│   │   ├── Button.jsx
-│   ├── ProtectedRoute/    ### Ruta solo accesible a Admin (oculta el boton a otros usuarios)
-│   │   ├── ProtectedRoute.jsx
-├── context/
-│   ├── ProductsContext/   ### Contextos de productos
-│   │   ├── ProductsState.jsx
-│   │   ├── ProductsReducer.jsx
-│   ├── UserContext/  ### Contextos de usuario
-│   │   ├── UserState.jsx
-│   │   ├── UserReducer.jsx
-│   ├── OrdersContext/   ### Contexto de pedidos
-│   │   ├── OrdersState.jsx
-├── assets/
-├── theme/
-├── views/
-├── public/
-
+src/ ├── components/ │ ├── Products/ ### CRUD de Productos │ │ ├── EditProductModal.jsx │ │ ├── default-image.jpg │ │ ├── CreateProduct.jsx │ │ ├── HomeProducts.styled.jsx │ │ ├── HomeProducts.jsx │ │ ├── Products.jsx │ │ ├── EditProductModal.styled.jsx │ │ ├── CreateProduct.styled.jsx │ │ ├── ImgProducts.jsx │ ├── TheHeader/ ### Estilos de Cabecera │ │ ├── TheHeader.jsx │ │ ├── TheHeader.styled.jsx │ ├── Admin/ ### Perfil Admin │ │ ├── Admin.jsx │ │ ├── Admin.styled.jsx │ ├── Profile/ ### Perfil de usuario │ │ ├── Profile.jsx │ │ ├── Profile.styled.jsx │ ├── RegisterUser/ ### Registro de usuarios │ │ ├── RegisterUser.jsx │ ├── TheFooter/ ### Diseño del Footer de la página │ │ ├── TheFooter.jsx │ │ ├── TheFooter.styled.jsx │ ├── Cart/ ### Carrito de la compra │ │ ├── Cart.jsx │ │ ├── Cart.styled.jsx │ ├── Login/ ### Login de la página │ │ ├── Login.jsx │ │ ├── Login.styled.jsx │ ├── Forbidden/ ### Mensaje para usuarios no admin al intentar acceder a privilegios │ │ ├── Forbidden.jsx │ │ ├── Forbidden.styled.jsx │ ├── ProductCard/ ### Tarjetas de productos │ │ ├── ProductCard.styled.jsx │ │ ├── ProductCard.jsx │ ├── Button/ ### Estilos de botones │ │ ├── Button.styled.jsx │ │ ├── Button.jsx │ ├── ProtectedRoute/ ### Ruta solo accesible a Admin (oculta el botón a otros usuarios) │ │ ├── ProtectedRoute.jsx ├── context/ │ ├── ProductsContext/ ### Contextos de productos │ │ ├── ProductsState.jsx │ │ ├── ProductsReducer.jsx │ ├── UserContext/ ### Contextos de usuario │ │ ├── UserState.jsx │ │ ├── UserReducer.jsx │ ├── OrdersContext/ ### Contexto de pedidos │ │ ├── OrdersState.jsx ├── assets/ ├── theme/ ├── views/ ├── public/
 
 # Extras Realizados
 
