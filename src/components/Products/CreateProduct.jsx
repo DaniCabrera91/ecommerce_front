@@ -1,21 +1,19 @@
-import { Button, Form, InputNumber, Input, Select } from 'antd'
-import { useContext, useEffect, useRef } from 'react'
-import { ProductsContext } from '../../context/ProductsContext/ProductsState'
+import { Button, Form, InputNumber, Input, Select } from 'antd';
+import { useContext, useEffect } from 'react';
+import { ProductsContext } from '../../context/ProductsContext/ProductsState';
 
 const CreateProduct = () => {
-    const { createProduct, categories, getCategories } = useContext(ProductsContext)
-    const hasFetchedCategories = useRef(false)
+    const { createProduct, categories, getCategories } = useContext(ProductsContext);
 
     useEffect(() => {
-        if (!hasFetchedCategories.current) {
+        if (categories.length === 0) {
             getCategories();
-            hasFetchedCategories.current = true
         }
-    }, [getCategories]);
+    }, [categories, getCategories]);
 
     const onFinish = (values) => {
-        createProduct(values)
-    }
+        createProduct(values);
+    };
 
     return (
         <Form onFinish={onFinish}>
@@ -44,7 +42,7 @@ const CreateProduct = () => {
                 </Button>
             </Form.Item>
         </Form>
-    )
-}
+    );
+};
 
-export default CreateProduct
+export default CreateProduct;

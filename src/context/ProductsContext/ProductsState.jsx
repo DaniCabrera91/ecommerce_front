@@ -16,6 +16,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const ProductsProvider = ({ children }) => {
     const [state, dispatch] = useReducer(ProductsReducer, initialState)
 
+    //GET PRODUCTS
     const getProducts = useCallback(async () => {
         try {
             const res = await axios.get(`${API_URL}/products`)
@@ -28,6 +29,8 @@ export const ProductsProvider = ({ children }) => {
         }
     }, [])
 
+
+    //ADD CART
     const addCart = useCallback((product) => {
         dispatch({
             type: 'ADD_CART',
@@ -35,12 +38,14 @@ export const ProductsProvider = ({ children }) => {
         })
     }, [])
 
+    //CLEAR CART
     const clearCart = useCallback(() => {
         dispatch({
             type: 'CLEAR_CART',
         })
     }, [])
 
+    //CREATE PRODUCT
     const createProduct = async (product) => {
         const token = JSON.parse(localStorage.getItem('token'))
         try {
@@ -57,6 +62,7 @@ export const ProductsProvider = ({ children }) => {
         }
     }
 
+    //DELETE PRODUCT
     const deleteProduct = useCallback(async (id) => {
         const token = JSON.parse(localStorage.getItem('token'))
         try {
@@ -74,6 +80,7 @@ export const ProductsProvider = ({ children }) => {
         }
     }, [])
 
+    //GET PRODUCT BY ID
     const getProductById = useCallback(async (id) => {
         try {
             const res = await axios.get(`${API_URL}/products/id/${id}`)
@@ -86,6 +93,7 @@ export const ProductsProvider = ({ children }) => {
         }
     }, [])
 
+    //EDIT PRODUCT
     const editProduct = useCallback(async (product, id) => {
         const token = JSON.parse(localStorage.getItem('token'))
         try {
@@ -101,6 +109,7 @@ export const ProductsProvider = ({ children }) => {
         }
     }, [])
 
+    //GET CATEGORIES
     const getCategories = useCallback(async () => {
         try {
             const res = await axios.get(`${API_URL}/categories`)
